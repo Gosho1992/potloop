@@ -1,6 +1,6 @@
 # UI acceptance report (automated)
 
-**Result: 22 of 22 cases pass** on the production build of the app, after two app bugs found by this suite were fixed. Raw results: `evidence/v93-release/ui-e2e/results.json`, a screenshot per case, and the browser console log.
+**Result: 23 of 23 cases pass** on the production build of the app, after three app bugs were fixed (two found by this suite, one found on the live app on 23 Nov 2026 and now covered by E2E-23). Raw results: `evidence/v93-release/ui-e2e/results.json`, a screenshot per case, and the browser console log.
 
 ## What was tested, and how
 
@@ -41,6 +41,7 @@
 | E2E-20 | RPC unreachable | PASS | "Can't reach the QIE network right now…" and "Can't read the circle right now"; no action buttons; a genuine circle is **not** called fake |
 | E2E-21 | Circle not created by the official factory | PASS | Refused with a warning; no actions |
 | E2E-22 | URL tries to set factory and RPC | PASS | Ignored by the production build |
+| E2E-23 | Every tab of a finished circle that had a default and a catch-up | PASS | No page errors; 28 history lines, the default and the catch-up described in words, no event shown by its raw name |
 
 ## Bugs found by this suite and fixed (app only; no contract change)
 
@@ -48,6 +49,8 @@
 | --- | --- | --- | --- |
 | Medium | With the RPC unreachable, a **genuine circle was shown as "not a circle created by PotLoop's official factory. Don't approve or send anything to it."** The failed `isCircle` call was treated as "no". The header also said the network was the wrong chain rather than unreachable. In a demo or a pilot this tells members their real circle is a scam | `loadCircle` no longer swallows the factory lookup error (it becomes "Can't read the circle right now"); `verifyNetwork` distinguishes unreachable (`null`) from the wrong chain (`false`); new message for unreachable | Seen in the first full run on the original code (its screenshot showed the warning on the genuine circle; that run's files were overwritten by later runs). Passes now |
 | Low | A refresh requested while another was running was dropped, so the screen could lag. After an action, "Record results" stayed visible and a second press gave a correct but confusing "already recorded" error. After an **account switch in the wallet**, the previous account's view and buttons could stay on screen for 15 s or more | A refresh asked for during another one now runs right after it | E2E-16 failed on the original code ("record button still offered"). The current suite run against the original app (commit `2cfb6b2`) fails 12 of 22, starting with the new account's "accept seat 2" button not appearing within 30 s: `evidence/v93-release/ui-e2e-before-fix/`. All pass after the fix |
+
+| High | Opening **Risk and history** on any circle that had paid a pot showed a **blank page**. The history text for a payout read `circle.fromPayout`, but the function that writes it was never given the circle (`ReferenceError: circle is not defined`). Found while filming the demo on the 7 mainnet circles; the suite had never opened that tab. Also: returned collateral was listed by its raw event name, and the members table said "2 misss" | The circle is passed to `eventText`; `CollateralReturned` has a sentence; the members table says "missed rounds" | New case E2E-23 fails on the old code ("page error on Risk and history: circle is not defined") and passes now. All 3 tabs checked on all 7 mainnet circles with no page errors |
 
 ## Observations, not changed
 

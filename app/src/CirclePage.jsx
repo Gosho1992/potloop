@@ -421,7 +421,7 @@ function memberState(circle, m) {
   if (m.status === STATUS.POST)
     return m.paidThisRound ? ["late", `Paying again, ${plural(m.missedRounds, "missed round")} to catch up`] : ["ran", "Behind: collateral is paying"];
   if (circle.phase === "Open") return m.accepted ? ["ready", "Accepted"] : ["empty", "Not accepted yet"];
-  const caughtUp = m.missedRounds > 0 ? ` (caught up after ${plural(m.missedRounds, "miss")})` : "";
+  const caughtUp = m.missedRounds > 0 ? ` (caught up after ${plural(m.missedRounds, "missed round")})` : "";
   if (circle.phase !== "Active" || circle.allRoundsSettled) return ["done", `Paid every round${caughtUp}`];
   if (m.paidThisRound) return ["paid", `Paid round ${circle.currentRound}${caughtUp}`];
   return ["due", `Not paid yet${caughtUp}`];
@@ -572,6 +572,7 @@ function eventText(e, who, money, circle) {
     case "RoundSettled": return `Round ${a.round} settled. Reserve now ${money(a.freeReserveAfter)}.`;
     case "LossRecorded": return `${money(a.amount)} could not be recovered for ${who(a.recipient)}.`;
     case "RefundCredited": return `${who(a.defaulter)} gets back ${money(a.amount)} of their ${money(a.claim)}.`;
+    case "CollateralReturned": return `${who(a.member)} got back ${money(a.amount)} of collateral.`;
     case "Finalized": return "The circle finished. Collateral and refunds were released.";
     case "Cancelled": return "The circle was cancelled. Deposits were released.";
     case "Withdrawn": return `${who(a.account)} withdrew ${money(a.amount)}.`;

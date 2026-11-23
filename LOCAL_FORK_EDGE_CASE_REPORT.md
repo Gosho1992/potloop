@@ -27,7 +27,7 @@ No mainnet transaction was sent for anything in this report.
 | App build | `cd app && npm run build` | 0 | built |
 | Secret scan | `node scripts/release-scan.js` | 0 | PASS |
 | Exhaustive suite, all 6 combinations | see the next section | 0 for every combination | **46,656 of 46,656 patterns passed** |
-| UI acceptance | `node app/e2e/run-e2e.cjs` | 0 | 22/22 (`UI_E2E_REPORT.md`) |
+| UI acceptance | `node app/e2e/run-e2e.cjs` | 0 | 23/23 (`UI_E2E_REPORT.md`) |
 | Local copy of mainnet | `scripts/fork-release-checks.js` (`PART=record`, `twelve`, `upfront`) | 0 | 49 checks, 0 failed (below) |
 
 ### Exhaustive suite: every default pattern for 5 members

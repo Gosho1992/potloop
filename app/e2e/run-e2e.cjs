@@ -340,6 +340,25 @@ async function main() {
     return `withdrew ${out.join(", ")}; circle holds only the treasury's ${fmt(fee)} fee; nets ${nets.map(fmt).join(", ")}`;
   });
 
+  await tcase("E2E-23", "Every tab of a finished circle with a default and catch-up renders, with a readable history", page, async () => {
+    const crashes = [];
+    page.on("pageerror", (e) => crashes.push(String(e.message || e)));
+    for (const tab of ["Your seat", "Risk and history", "Members", "Risk and history"]) {
+      await (await visible(page.getByRole("tab", { name: tab, exact: true }))).click();
+      await page.waitForTimeout(500);
+      must(crashes.length === 0, `page error on ${tab}: ${crashes[0]}`);
+    }
+    await text(page, /^What happened$/);
+    const items = await page.locator("ol.history li").allInnerTexts();
+    must(items.length > 10, `only ${items.length} history lines`);
+    must(items.some((t) => /missed round 2 after taking the pot/.test(t)), "default not described");
+    must(items.some((t) => /caught up in full/.test(t)), "catch-up not described");
+    const raw = items.filter((t) => /^[A-Z][a-zA-Z]+\s*\n/.test(t));
+    must(raw.length === 0, `events shown by raw name: ${raw.join(" | ")}`);
+    await (await visible(page.getByRole("tab", { name: "Members", exact: true }))).click();
+    return `${items.length} history lines, no page errors`;
+  });
+
   await tcase("E2E-18", "Wallet disconnect: the app drops the account and offers to connect again", page, async () => {
     await page.evaluate(() => window.__wallet.emit("accountsChanged", []));
     await visible(btn(page, /^Connect wallet/));
