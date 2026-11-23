@@ -30,7 +30,7 @@ Each of these is a blocker, and the pilot needs all of them resolved:
 2. **The real QIE Wallet has not been tested by a person** (H5). The automated suite uses a scripted wallet; `POTLOOP_UAT_PLAN.md` is ready to execute.
 3. **No independent audit** (H4).
 4. **QUSDC's administrator can burn any holder's QUSDC, a circle's included** (H3). Members must be told before they deposit, and amounts limited.
-5. **The source is not verified on the explorer** (M2), so members cannot read the code they trust.
+5. ~~The source is not verified on the explorer~~: the factory is now verified, with all three contracts' sources (M2).
 6. **The exposed key files still exist** on the owner's computer and with the reviewer (C1, human action).
 
 **Production** additionally needs a multisig treasury. Safe is not available on QIE today (L3). It also needs the pilot's results.
@@ -65,7 +65,7 @@ Severity: Critical / High / Medium / Low. Status: verified (confirmed true), fix
 | H4 | High | No independent smart-contract audit | **unresolved**; **requires human action** | Commission a review of this exact source before the pilot |
 | H5 | High | The real QIE Wallet (extension and mobile) has not been accepted by a person | **unresolved**; plan **ready**; **requires human action** (stage B also needs approval for small mainnet amounts) | `POTLOOP_UAT_PLAN.md`, `UAT_TEST_CASES.csv` |
 | M1 | Medium | With the RPC unreachable, the app labelled a genuine circle "not created by PotLoop's official factory" and said the network was the wrong chain | **fixed and tested** (E2E-20) | `app/src/chain.js`, `App.jsx` |
-| M2 | Medium | Factory and deployer source not verified on the explorer (bytecode does match) | **verified**; **requires human action** (no transaction, but an action on a public service) | Run the two `npx hardhat verify` commands with the constructor values in `MAINNET_DEPLOYMENT_RECONCILIATION.md` |
+| M2 | Medium | Factory and deployer source not verified on the explorer (bytecode does match) | **fixed for the factory** (fully verified on 23 Nov 2026, with the circle and deployer sources in its bundle); the deployer and circles **cannot** be verified because QIE's explorer does not index contract-created contracts (explorer limitation) | `MAINNET_DEPLOYMENT_RECONCILIATION.md` |
 | M3 | Medium | Mainnet reporting double-counted S5's transactions under S6, repeated S3's totals per circle, and mixed attempts with circles | **fixed**; **verified** against receipts | `MAINNET_EVIDENCE_CORRECTIONS.md`, the three CSVs |
 | M4 | Medium | `recordCircle()` was never part of the mainnet acceptance runs | **tested** locally, on a local copy of mainnet (7 real circles) and in the UI; added to the runner (off by default); mainnet **requires human approval** | `LOCAL_FORK_EDGE_CASE_REPORT.md` (one transaction, about 331k gas, about 0.00037 QIE) |
 | M5 | Medium | `deploy-factory.js` defaulted the treasury to the deploying wallet, also in production | **fixed** (production with a fee needs an explicit, non-deployer, contract treasury; exposed addresses refused; fee 0 gives a zero treasury); **tested** locally | `scripts/deploy-factory.js` |
@@ -95,7 +95,7 @@ Severity: Critical / High / Medium / Low. Status: verified (confirmed true), fix
 ## Owner decisions needed (nothing below has been done)
 
 1. Delete the key files and archives, and ask the reviewer to delete their copy (C1).
-2. Approve or decline explorer verification of the demo factory and deployer (M2).
+2. ~~Explorer verification~~: done for the factory (M2).
 3. Approve or decline the one-transaction `recordCircle` mainnet test on the S4 circle (M4).
 4. Choose the pilot factory settings (grace 6 h or 12 h; fee 0) and approve its deployment when the other blockers are cleared (H2).
 5. Arrange the manual QIE Wallet acceptance (H5) and an independent review (H4).

@@ -38,7 +38,11 @@ The contract sources are byte-identical to v9.2.1 and v9.2.2 (no contract change
 
 ## Explorer source verification
 
-**Not verified.** This is separate from the bytecode match above, which anyone can reproduce from this source.
+**Update, 23 Nov 2026 (after this report was first written): the factory is now verified.** [Code tab](https://mainnet.qie.digital/address/0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4#code): `is_verified` and `is_fully_verified` true, compiler v0.8.39, optimizer 200 runs, EVM paris. The verified source bundle includes `contracts/SavingsCircle.sol` and `contracts/CircleDeployer.sol`, so all three contracts can be read there.
+
+The deployer and the 7 circles **cannot be verified on this explorer**. They were created by contracts (the factory and the deployer), and QIE's explorer does not index internal transactions: it lists 0 internal transactions for the factory and shows the deployer and the circles as plain addresses ("EOA"). Verifying the deployer returned "The address is not a smart contract". Their bytecode is matched against this source by `scripts/reconcile-mainnet.js` instead (table above).
+
+The rest of this section records the state before verification:
 
 | Address | Explorer API (`/api/v2/smart-contracts/<address>`) |
 | --- | --- |
@@ -47,7 +51,7 @@ The contract sources are byte-identical to v9.2.1 and v9.2.2 (no contract change
 | The 7 circles | HTTP 404 each |
 | QUSDC (for comparison) | HTTP 200, `is_verified: true`, name QUSDC, compiler v0.8.20 |
 
-To fix: run the two `npx hardhat verify` commands `scripts/deploy-factory.js` printed (factory with its 7 constructor arguments, then the deployer). Explorer verification does not send a transaction and needs no key, but it is an action on a public service: it is listed for the owner's approval in `FINAL_RELEASE_READINESS.md`.
+Done for the factory with the owner's approval: `npx hardhat verify --network qieMainnet --contract contracts/CircleFactory.sol:CircleFactory 0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4 0x3F43DA82eC9A4f5285F10FaF1F26EcA7319E5DA5 0x918Da8404d39195dEbB2c039F376ce7ab922db76 50 60 30 10000 0` (no key, no transaction).
 
 ## Every circle: registration and final state
 
