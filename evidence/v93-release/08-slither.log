@@ -1,0 +1,62 @@
+INFO:Detectors:
+Detector: divide-before-multiply
+SavingsCircle.finalize() (contracts/SavingsCircle.sol#507-636) performs a multiplication on the result of a division:
+	- each = left / goodCount (contracts/SavingsCircle.sol#623)
+	- rem = left - each * goodCount (contracts/SavingsCircle.sol#624)
+SavingsCircle._shareEqually(uint256) (contracts/SavingsCircle.sol#803-810) performs a multiplication on the result of a division:
+	- each = amount / n (contracts/SavingsCircle.sol#805)
+	- rem = amount - each * n (contracts/SavingsCircle.sol#806)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#divide-before-multiply
+INFO:Detectors:
+Detector: incorrect-equality
+SavingsCircle._withdraw(address) (contracts/SavingsCircle.sol#817-827) uses a dangerous strict equality:
+	- amount == 0 (contracts/SavingsCircle.sol#819)
+SavingsCircle.finalize() (contracts/SavingsCircle.sol#507-636) uses a dangerous strict equality:
+	- claim == 0 (contracts/SavingsCircle.sol#577)
+SavingsCircle.risk() (contracts/SavingsCircle.sol#710-723) uses a dangerous strict equality:
+	- out.stillOwed == 0 (contracts/SavingsCircle.sol#722)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dangerous-strict-equalities
+INFO:Detectors:
+Detector: calls-loop
+CircleFactory.recordCircle(address) (contracts/CircleFactory.sol#151-169) has external calls inside a loop: outcome = c.outcomeOf(i) (contracts/CircleFactory.sol#160)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop
+INFO:Detectors:
+Detector: reentrancy-benign
+Reentrancy in CircleFactory.createCircle(string,address[],uint256,uint256,uint256,uint256,uint256,bool) (contracts/CircleFactory.sol#104-140):
+	External calls:
+	- circle = deployer.deploy(SavingsCircle.Config({members:members,token:token,contribution:contribution,coverageBps:coverageBps,roundLength:roundLength,grace:grace,joinWindow:joinWindow,organizer:msg.sender,treasury:treasury,feeBps:feeBps,registry:address(this),collateralFromPayout:collateralFromPayout})) (contracts/CircleFactory.sol#117-132)
+	State variables written after the call(s):
+	- _circles.push(circle) (contracts/CircleFactory.sol#135)
+	- isCircle[circle] = true (contracts/CircleFactory.sol#133)
+	- nameOf[circle] = name (contracts/CircleFactory.sol#134)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-3
+INFO:Detectors:
+Detector: reentrancy-events
+Reentrancy in CircleFactory.createCircle(string,address[],uint256,uint256,uint256,uint256,uint256,bool) (contracts/CircleFactory.sol#104-140):
+	External calls:
+	- circle = deployer.deploy(SavingsCircle.Config({members:members,token:token,contribution:contribution,coverageBps:coverageBps,roundLength:roundLength,grace:grace,joinWindow:joinWindow,organizer:msg.sender,treasury:treasury,feeBps:feeBps,registry:address(this),collateralFromPayout:collateralFromPayout})) (contracts/CircleFactory.sol#117-132)
+	Event emitted after the call(s):
+	- CircleCreated(circle,msg.sender,name,contribution,coverageBps,members.length) (contracts/CircleFactory.sol#136)
+	- Invited(circle,members[i],i + 1) (contracts/CircleFactory.sol#138)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#reentrancy-vulnerabilities-4
+INFO:Detectors:
+Detector: timestamp
+SavingsCircle.accept() (contracts/SavingsCircle.sol#278-294) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp > joinDeadline (contracts/SavingsCircle.sol#280)
+SavingsCircle.cancel() (contracts/SavingsCircle.sol#318-336) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp <= joinDeadline (contracts/SavingsCircle.sol#320)
+SavingsCircle.contribute() (contracts/SavingsCircle.sol#348-361) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp > deadline() + grace (contracts/SavingsCircle.sol#354)
+SavingsCircle.settle() (contracts/SavingsCircle.sol#365-450) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp <= deadline() + grace && ! _allEligiblePaid(r) (contracts/SavingsCircle.sol#368)
+	- block.timestamp > due (contracts/SavingsCircle.sol#448)
+SavingsCircle.finalize() (contracts/SavingsCircle.sol#507-636) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp < finalizeAfter (contracts/SavingsCircle.sol#511)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+INFO:Slither:. analyzed (30 contracts with 76 detectors), 13 result(s) found
+slither exit 255 (non-zero means findings were reported)

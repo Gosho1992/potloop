@@ -1,0 +1,38 @@
+source tree sha256: 21c25644874e513b5367fef7799e6a7a38bff5c0ec06bf77d3a691177b259f7d (159 files)
+== 01-compile: npx hardhat compile --force
+   exit 0, 2s
+== 02-bytecode-sizes: npx hardhat run scripts/bytecode-sizes.js
+   exit 0, 1s
+== 03-test-suite: npx hardhat test
+   exit 0, 337s
+== 04-release-acceptance: npx hardhat test test/ReleaseAcceptance.test.js
+   exit 0, 22s
+== 05-reentrancy-malicious-tokens: npx hardhat test test/SavingsCircle.attacks.test.js test/SavingsCircle.v6.test.js
+   exit 0, 23s
+== 06-invariants-1500: env INVARIANT_RUNS=1500 npx hardhat test test/SavingsCircle.invariants.test.js
+   exit 0, 647s
+== 07-mutation-check: node scripts/mutation-sim.mjs
+   exit 0, 210s
+== 08-slither: bash -c slither . --hardhat-ignore-compile --filter-paths "node_modules|contracts/test" --exclude-informational --exclude-optimization; code=$?; echo "slither exit $code (non-zero means findings were reported)"; exit $code
+   exit 255, 3s
+== 09-app-build: bash -c cd app && npm run build
+   exit 0, 2s
+== 10-release-scan: node scripts/release-scan.js
+   exit 0, 1s
+== 11-exhaustive: env EXHAUSTIVE=1 npx hardhat test test/SavingsCircle.exhaustive.test.js
+   exit 143, 695s
+done 2026-11-23T11:29:26Z
+== 11-exhaustive (two processes, one per collateral mode), started 2026-11-23T11:29:30Z, revision f43fffc; contracts and tests unchanged since 2cfb6b2: 
+== 12-app-build on final revision 66de94d: exit 0
+== 13-release-scan on final revision 66de94d: exit 0
+== 14-ui-e2e (node app/e2e/run-e2e.cjs) on final revision 66de94d: passed/failed 22 0
+   11a upfront: exit 137, 2318s
+   11b from-pot: exit 0, 5207s
+   11b from-pot process (pid 3109) exited at 2026-11-23T12:56:24Z; last sampled peak RSS 5149672 kB
+== 11c-exhaustive mode=upfront k=5000 (own process), started 2026-11-23T12:56:24Z
+   11c mode=upfront k=5000: exit 0, 2026s, peak RSS 2908800 kB
+== 11d-exhaustive mode=upfront k=10000 (own process), started 2026-11-23T13:30:10Z
+   11d mode=upfront k=10000: exit 0, 2222s, peak RSS 2922168 kB
+== exhaustive completion script done 2026-11-23T14:07:12Z
+== 11e-exhaustive mode=upfront k=0 (own process; re-run because 11a's process was later OOM-killed), started 2026-11-23T14:12:20Z
+   11e mode=upfront k=0: exit 0, 1983s, peak RSS 2858460 kB

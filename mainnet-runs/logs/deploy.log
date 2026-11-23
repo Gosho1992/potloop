@@ -1,0 +1,16 @@
+Note: the fee goes to your deployer wallet. For real use, set TREASURY to a Safe multisig.
+Network qieMainnet (chain 1990), deployer 0x918Da8404d39195dEbB2c039F376ce7ab922db76
+Balance: 1.99977279725 QIE
+Mode demo: minimum round 60s, grace 30s, contribution 0.01 QUSDC, minimum cover 0%
+
+CircleFactory deployed at 0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4 (block 12109975)
+CircleDeployer (created by the factory, only the factory can use it): 0xb24EcA9a5cbdab9e05963d22461f1d704ac41B00
+Factory rules read back: fee 50 bps, min round 60s, min grace 30s, min contribution 10000, min cover 0 bps, version 92
+
+Verify on the explorer:
+  npx hardhat verify --network qieMainnet 0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4 0x3F43DA82eC9A4f5285F10FaF1F26EcA7319E5DA5 0x918Da8404d39195dEbB2c039F376ce7ab922db76 50 60 30 10000 0
+  npx hardhat verify --network qieMainnet 0xb24EcA9a5cbdab9e05963d22461f1d704ac41B00
+
+Put these in app/.env:
+  VITE_FACTORY_ADDRESS=0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4
+  VITE_FROM_BLOCK=12109975

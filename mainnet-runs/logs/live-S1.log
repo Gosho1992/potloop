@@ -1,0 +1,25 @@
+
+=== Scenario 1: Two-member smoke test: join, contribute, payout, finalize, withdraw (live) ===
+
+S1: 2 members, 0.02 QUSDC per round, 100% cover, collateral from the pot
+  fund Sipho 0.06 QUSDC: 0x43c80487ee5a95cd8f9f52da40e60339f81d4299c48bbd0554b28e8b0068aeb9 gas 52162 (est 52162) fee 0.00005868225 QIE, total 0.00005868225 QIE
+  fund Sipho gas: 0x863ab90097fa5628e77790af539ee3049759394e6c7e831be56be51f403d19f3 gas 21000 (est 21000) fee 0.000023625 QIE, total 0.00008230725 QIE
+  fund Thandi 0.06 QUSDC: 0x6c5f3b485d19df597fbe5fa5472ee0ba988f317f27d6768d78d4e08d7b61f163 gas 52162 (est 52162) fee 0.00005868225 QIE, total 0.0001409895 QIE
+  fund Thandi gas: 0x86161760a9a9832f3341e268ef4af91d583ade53b4bddeef32a68d07acdf7d6e gas 21000 (est 21000) fee 0.000023625 QIE, total 0.0001646145 QIE
+  create S1: 0xc88fd612cfbb4242096f96cfb61b416710281f2a8342b59489e02bb98bfffbbe gas 3520782 (est 3520782) fee 0.00396087975 QIE, total 0.00412549425 QIE
+  circle 0x4a26e0c8f314a752FBd7EB82375B4066b4D1F291
+  PASS factory registered the new circle
+  PASS circle is new (not one of the earlier circles)
+  Sipho approves 0.02 collateral: 0x706e954e7a8cf3ee70e16659ee7d81110036ccb0dac8d21fb575db7f1dc292b0 gas 46949 (est 46949) fee 0.000052817625 QIE, total 0.004178311875 QIE
+  Sipho accepts seat 1: 0x660fb67c226ffa071bf01ec932c8969b99da0150633600f32cace5173c25a13f gas 186133 (est 195916) fee 0.000209399625 QIE, total 0.0043877115 QIE
+  Thandi approves 0.02 collateral: 0x02ab0273d103a43eb82576c91b946f8914db9990859bb537e1f78e8805433288 gas 46949 (est 46949) fee 0.000052817625 QIE, total 0.004440529125 QIE
+  Thandi accepts seat 2: 0xff1da70afaddc4d8faa54a223a224ee5cb4413213587b6d9396f7d864c822947 gas 217350 (est 227133) fee 0.00024451875 QIE, total 0.004685047875 QIE
+  Sipho approves round 1: 0xe292a0fa536bfc53f66216cdb9723b55c8f01dff791b4d8eb8f52ecbbfbea794 gas 46949 (est 46949) fee 0.000052817625 QIE, total 0.0047378655 QIE
+  Sipho pays round 1: 0x1d4b11ea06d491475337c9053afff61be7caca1aaa659c98b7cc1556f166370c gas 126008 (est 135791) fee 0.000141759 QIE, total 0.0048796245 QIE
+  Thandi approves round 1: 0x73d2918e67b8b43c2279f2a5fd6a22baf28ae5c4c770679b71df6eb3cdfe3101 gas 46949 (est 46949) fee 0.000052817625 QIE, total 0.004932442125 QIE
+  Thandi pays round 1: 0x2e04d812bfa3a7b3cc3c0fbc1c92ff84a3dd4f5f0b10555dc5d68bef48f9a85b gas 108908 (est 118691) fee 0.0001225215 QIE, total 0.005054963625 QIE
+  settle round 1: 0x34d3e74bded53e105fa44b317b0fc274a1ab62df67e5b94f382c50fd119056b6 gas 139542 (est 149325) fee 0.00015698475 QIE, total 0.005211948375 QIE
+  Sipho approves round 2: 0x05feca80d4491ed5087086b9604f4f3590fd5c3c7a8d470d32ebdcfc2374d501 gas 46949 (est 46949) fee 0.000052817625 QIE, total 0.005264766 QIE
+  Sipho pays round 2: 0x06027437af34f95ebc46497d978c1f550a866a0dfe7cb3210a9c3583f65742ff gas 104108 (est 118691) fee 0.0001171215 QIE, total 0.0053818875 QIE
+  Thandi approves round 2: 0xc843ad47d3dce09118a4ce4c9c845764169d74942562b70b3c4bc449a08d333a gas 46949 (est 46949) fee 0.000052817625 QIE, total 0.005434705125 QIE
+  Thandi pays round 2: 0xaab1b9e435b4961722d7e619206e0be49e63bc820192095474a6fe529ecdf22c gas 87008 (est 101591) fee 0.000097884 QIE, total 0.005532589125 QIE

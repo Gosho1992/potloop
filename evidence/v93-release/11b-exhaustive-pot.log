@@ -1,0 +1,31 @@
+
+
+  SavingsCircle — exhaustive default patterns
+      1000 / 7776 patterns OK at k=0, collateral from the pot
+      2000 / 7776 patterns OK at k=0, collateral from the pot
+      3000 / 7776 patterns OK at k=0, collateral from the pot
+      4000 / 7776 patterns OK at k=0, collateral from the pot
+      5000 / 7776 patterns OK at k=0, collateral from the pot
+      6000 / 7776 patterns OK at k=0, collateral from the pot
+      7000 / 7776 patterns OK at k=0, collateral from the pot
+    ✔ all 7,776 patterns at coverage 0%, collateral from the pot (1429969ms)
+      1000 / 7776 patterns OK at k=5000, collateral from the pot
+      2000 / 7776 patterns OK at k=5000, collateral from the pot
+      3000 / 7776 patterns OK at k=5000, collateral from the pot
+      4000 / 7776 patterns OK at k=5000, collateral from the pot
+      5000 / 7776 patterns OK at k=5000, collateral from the pot
+      6000 / 7776 patterns OK at k=5000, collateral from the pot
+      7000 / 7776 patterns OK at k=5000, collateral from the pot
+    ✔ all 7,776 patterns at coverage 50%, collateral from the pot (1697564ms)
+      1000 / 7776 patterns OK at k=10000, collateral from the pot
+      2000 / 7776 patterns OK at k=10000, collateral from the pot
+      3000 / 7776 patterns OK at k=10000, collateral from the pot
+      4000 / 7776 patterns OK at k=10000, collateral from the pot
+      5000 / 7776 patterns OK at k=10000, collateral from the pot
+      6000 / 7776 patterns OK at k=10000, collateral from the pot
+      7000 / 7776 patterns OK at k=10000, collateral from the pot
+    ✔ all 7,776 patterns at coverage 100%, collateral from the pot (2079452ms)
+
+
+  3 passing (1h)
+

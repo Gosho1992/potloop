@@ -1,0 +1,6 @@
+solc 0.8.39, optimizer on, runs 200, EVM target paris, viaIR false
+contract          runtime  spare(24,576)   init   spare(49,152)
+SavingsCircle       15905           8671   18104          31048
+CircleFactory        6492          18084   26247          22905
+CircleDeployer      18990           5586   19042          30110
+CircleFactory's init code contains CircleDeployer's, which contains SavingsCircle's.

@@ -1,0 +1,34 @@
+
+
+  v9.3 release acceptance — factory history (recordCircle)
+    ✔ records completed / caught up / left early / walked away, volume only for good standing, once, without touching money (1258ms)
+    ✔ history accumulates across circles of the same factory and is per factory, per address (611ms)
+    ✔ a cancelled circle and a circle still running cannot be recorded (161ms)
+
+  v9.3 release acceptance — membership
+    ✔ 2 and 12 members run a full cycle in both collateral modes; nets are exactly the fee (8679ms)
+    ✔ rejects 1 or 13 members, a duplicate, the zero address, and cover below the factory minimum (87ms)
+    ✔ payout order is the members list, whatever the address order or the order of accepting; outsiders and repeat accepts are refused (421ms)
+    ✔ join window: accept closes at the deadline; cancel only after it; leave and cancel return collateral exactly (140ms)
+
+  v9.3 release acceptance — coverage, collateral modes and defaults
+    ✔ seat 1 walks away after its payout: 0%, 20%, 50%, 100% cover in both modes match the hand-computed loss (4469ms)
+    ✔ default before receiving the pot: the leaver forfeits up to one share, which goes to those who stayed (883ms)
+    ✔ multiple simultaneous defaults (two walkers and a leaver in the same round) keep every ledger exact (704ms)
+    ✔ catch-up before settlement costs restore + uncovered + this round + 2% late fee, exactly (604ms)
+    ✔ catch-up after the contribution window expired but before settlement counts for that round (417ms)
+    ✔ catch-up after a partial repayment repays the oldest entitlement first; insufficient funds change nothing (429ms)
+
+  v9.3 release acceptance — withdrawals, finalization, surplus, treasury, isolation
+    ✔ withdraw, a second withdraw, withdrawTo another address, and bad recipients (148ms)
+    ✔ finalize waits for the last round and, if anyone is behind, the cure window; nothing runs after it (215ms)
+    ✔ stray tokens: swept into the reserve while running, shared equally after the end; never lost (438ms)
+    ✔ the treasury receives exactly the fee on pot money paid out, and only the treasury can take it (390ms)
+    ✔ circles of one factory are isolated: actions, stray tokens and withdrawals in one never move the other (395ms)
+
+  v9.3 release acceptance — token administrator risk (QUSDC model)
+    ✔ if the token administrator burns from a circle, the ledger exceeds the balance and the last withdrawals fail (267ms)
+
+
+  19 passing (21s)
+

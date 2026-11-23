@@ -1,0 +1,41 @@
+
+
+  SavingsCircle — attack and state-machine tests
+    ✔ reentrancy: a malicious token cannot make withdraw() pay twice (539ms)
+    ✔ phase rules: no early activate, no contribution before start, no cancel once full (99ms)
+    ✔ after the last round: no more contributions or settles, finalize only once, withdraw only once (502ms)
+    ✔ a member cannot join after the join window closes
+
+  v6 — timing attacks
+    ✔ early settle waits for a member who is behind but still allowed to pay (GPT critical 1, Fable L2) (328ms)
+    ✔ finalize waits for the cure window when someone is behind; they can catch up in it (GPT critical 2, Fable M2) (486ms)
+    ✔ with nobody behind, finalize needs no wait (459ms)
+    ✔ fixed schedule: an early settle does not pull the next deadline forward (Fable L4) (134ms)
+    ✔ catching up while a round is open also pays that round, so the member cannot re-default (Fable L1) (357ms)
+    ✔ catch-up after the current payment window expires but before settlement pays that round (234ms)
+    ✔ insufficient catch-up funds cannot partially restore status or collateral (284ms)
+
+  v6 — tokens and transfers
+    ✔ cross-function reentrancy: a token calling sweepSurplus() from inside a withdrawal is blocked (GPT 3) (61ms)
+    ✔ a blocked address can withdraw to another address (Fable L6) (80ms)
+    ✔ a token that skims outgoing transfers is refused at withdrawal (GPT 9) (50ms)
+    ✔ a token address with no contract code is rejected (GPT 8)
+
+  v6 — input bounds and rounding
+    ✔ publishes exact immutable seat terms for the member review flow
+    ✔ rejects zero, huge and out-of-range schedules and amounts (Fable H1/H2, GPT 10) (82ms)
+    ✔ collateral rounds up: the smallest contribution at 20% cover still locks something (GPT 11)
+    ✔ leftover tokens are shared one unit at a time, not all to the first member (GPT 11)
+
+  v6 — money rules
+    ✔ leftover collateral of a member whose misses were all covered goes back to them, not to others' debts (Fable M1) (412ms)
+    ✔ leave() before the start returns the collateral; the seat can be taken again (Fable L5) (42ms)
+    ✔ the service fee also applies to pot money repaid later (Fable L3) (379ms)
+    ✔ risk view reports a claim shortfall when the reserve can't cover what is already owed (GPT 4) (176ms)
+
+  v6 — random action ordering
+    ✔ stray transfers, sweeps, premature settle/finalize attempts and catch-ups never break the ledgers (17387ms)
+
+
+  24 passing (22s)
+

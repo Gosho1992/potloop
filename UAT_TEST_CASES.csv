@@ -1,0 +1,28 @@
+id,area,case,preconditions,steps,expected,requires_human,automated_logic_check,automated_status,manual_status
+UAT-01,Wallet,Connect QIE Wallet,QIE Wallet installed; app open,Press Connect wallet and approve in QIE Wallet,Header shows the account,Yes (real extension prompt),E2E-01,PASS,NOT RUN
+UAT-02,Network,Recover from the wrong network,QIE Wallet on another network,Press Connect; approve the network switch,App connects on QIE chain 1990,Yes,E2E-03,PASS,NOT RUN
+UAT-03,Network,Reject the network switch or connection,QIE Wallet on another network,Press Connect; reject the switch (and separately reject the connection),"""You cancelled it in your wallet.""; not connected",Yes,E2E-02; E2E-04,PASS,NOT RUN
+UAT-04,Wallet,Reconnect after refresh,Connected,Reload the page; press Connect,Disconnected after reload; Connect restores the same account and state,Yes,E2E-10,PASS,NOT RUN
+UAT-05,Create,Read the deployed factory's rules,Connected,Open Start a circle,Minimum contribution; offered schedules; allowed cover levels match the factory's rules(),No,E2E-05,PASS,NOT RUN
+UAT-06,Create,Create a circle from the UI,Connected; 3 fresh member addresses,Fill name; members; 0.02 per round; Every 3 minutes; 100% cover; Review; Confirm,One factory transaction; app opens the circle; terms on chain equal the form,Yes (signature),E2E-06,PASS,NOT RUN
+UAT-07,Invite,Invite link opens the circle,Circle created,Copy invite link; open it in another member's browser,Link is <site>/#/c/<circle>; circle shown with 0 of 3 accepted,Yes (second device or profile),E2E-07,PASS,NOT RUN
+UAT-08,Join,Exact collateral approval,Invited member connected,Press Lock ... and accept seat n; inspect QIE Wallet's approval screen,Approval amount equals the seat's collateral; spender is the circle; seat accepted,Yes (must read the extension's screen),E2E-08,PASS,NOT RUN
+UAT-09,Pay,Contribute from several accounts,Circle active,Each member presses Pay,Each payment recorded; others see it after refresh,Yes,E2E-09,PASS,NOT RUN
+UAT-10,Settle,Settle a round and refresh,All paid,Press Settle round 1; reload,Next round shown; payout credited to seat 1,Yes,E2E-10,PASS,NOT RUN
+UAT-11,Errors,Rejected signature,Payment due,Press Pay; reject in QIE Wallet; press Pay again,Clear message; nothing sent; retry succeeds,Yes,E2E-11,PASS,NOT RUN
+UAT-12,Errors,Slow or pending confirmation,Payment due,Press Pay on a busy network or slow RPC,"""confirming on QIE"" with a transaction link; buttons disabled until confirmed",Yes,E2E-12,PASS,NOT RUN
+UAT-13,Default,Default after the payout is displayed correctly,Seat 1 paid out,Seat 1 does not pay round 2; wait deadline + grace; Settle,"Behind warning; catch-up total, secured and still-owed figures equal catchUpCost() and risk() on chain",Yes (real time on mainnet),E2E-13,PASS,NOT RUN
+UAT-14,Recovery,Catch up after a default,Seat 1 behind,Seat 1 presses Catch up,Approval equals the total; breakdown shown; status good,Yes,E2E-14,PASS,NOT RUN
+UAT-15,Finish,Finalize,Last round settled,Press Finish the circle,This circle is finished,Yes,E2E-15,PASS,NOT RUN
+UAT-16,History,Record the completed results,Circle Completed,Press Record results to track records,One factory transaction; outcomes recorded; button disappears,Yes,E2E-16,PASS,NOT RUN
+UAT-17,Withdraw,Withdraw and see the final balance,Circle Completed,Each member presses Withdraw,Exact amount received; QIE Wallet balance matches; button disappears,Yes,E2E-17,PASS,NOT RUN
+UAT-18,Withdraw,Withdraw to another address,Member has a balance,Press Withdraw to another address; enter a second own address,That address receives exactly the amount,Yes,ReleaseAcceptance (withdrawTo),PASS (contract),NOT RUN
+UAT-19,Wallet,Account switch in QIE Wallet,Connected,Switch account in the extension,App shows the new account's seat and actions,Yes,E2E-08 (account change events),PASS,NOT RUN
+UAT-20,Wallet,Network switch mid-session,Connected,Switch QIE Wallet to another network,Connection dropped with a clear message,Yes,E2E-19,PASS,NOT RUN
+UAT-21,Wallet,Wallet locked or disconnected,Connected,Lock QIE Wallet or disconnect the site,App offers Connect again; no actions,Yes,E2E-18,PASS,NOT RUN
+UAT-22,Errors,Network unreachable,App open,Turn the connection off; reload; turn it on; reload,"""Can't reach the QIE network""; never ""not a genuine circle""; recovers",Yes,E2E-20,PASS,NOT RUN
+UAT-23,Mobile,QIE Wallet mobile app,Phone with QIE Wallet,Repeat UAT-02; UAT-08; UAT-09; UAT-17 in the in-app browser,Same results; screens readable,Yes,—,NOT AUTOMATED,NOT RUN
+UAT-24,Reconcile,Independent check of the UAT circle,UAT finished,Run scripts/reconcile-mainnet.js (read-only),Circle holds 0; ledgers 0; recorded; outcomes as expected,No,reconcile-mainnet.js,PASS (for the 7 test circles),NOT RUN
+UAT-25,Security,Fake circle link refused,App open,Open #/c/<an address not from the factory>,Warning; no actions,No,E2E-21,PASS,NOT RUN
+UAT-26,Security,URL cannot change factory or RPC,Production build,Open ?factory=...&rpc=... links,Settings ignored,No,E2E-22,PASS,NOT RUN
+UAT-27,Names,QIE ID names,Mainnet build,Enter a member as name.qie,Resolves to the right address; shown with the name,Yes (mainnet only),—,NOT AUTOMATED,NOT RUN

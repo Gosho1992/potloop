@@ -1,0 +1,474 @@
+{
+ "generatedAt": "2026-11-23T10:48:57.938Z",
+ "source": "QIE mainnet receipts and QUSDC Transfer logs (read-only), chain 1990",
+ "uniqueTransactions": {
+  "all": 511,
+  "deployment": 1,
+  "testRuns": 508,
+  "returnOfFunds": 2,
+  "success": 510,
+  "reverted": 1,
+  "revertedHashes": [
+   "0xbc1978dd7a431bbe7c911bbe5bc4e4970c235eb8325446f0074c0457daf993bf"
+  ]
+ },
+ "gas": {
+  "deployment": "5572279",
+  "testRuns": "61026560",
+  "returnOfFunds": "68374",
+  "all": "66667213"
+ },
+ "feesQIE": {
+  "deployment": "0.006268813875000000",
+  "testRuns": "0.068654880000000000",
+  "returnOfFunds": "0.000076920750000000",
+  "all": "0.075000614625000000"
+ },
+ "byAttempt": [
+  {
+   "attempt": "A0",
+   "scenario": "deploy",
+   "transactions": 1,
+   "gas": "5572279",
+   "feesQIE": "0.006268813875000000"
+  },
+  {
+   "attempt": "A1",
+   "scenario": "S1",
+   "transactions": 18,
+   "gas": "4917857",
+   "feesQIE": "0.005532589125000000"
+  },
+  {
+   "attempt": "A2",
+   "scenario": "S1",
+   "transactions": 9,
+   "gas": "499011",
+   "feesQIE": "0.000561387375000000"
+  },
+  {
+   "attempt": "A3",
+   "scenario": "S2",
+   "transactions": 67,
+   "gas": "8257460",
+   "feesQIE": "0.009289642500000000"
+  },
+  {
+   "attempt": "A4",
+   "scenario": "S3",
+   "transactions": 90,
+   "gas": "13347195",
+   "feesQIE": "0.015015594375000000"
+  },
+  {
+   "attempt": "A5",
+   "scenario": "S4",
+   "transactions": 89,
+   "gas": "10058703",
+   "feesQIE": "0.011316040875000000"
+  },
+  {
+   "attempt": "A6",
+   "scenario": "S5",
+   "transactions": 37,
+   "gas": "6262276",
+   "feesQIE": "0.007045060500000000"
+  },
+  {
+   "attempt": "A7",
+   "scenario": "S6",
+   "transactions": 75,
+   "gas": "5406499",
+   "feesQIE": "0.006082311375000000"
+  },
+  {
+   "attempt": "A8",
+   "scenario": "S7",
+   "transactions": 123,
+   "gas": "12277559",
+   "feesQIE": "0.013812253875000000"
+  },
+  {
+   "attempt": "A9",
+   "scenario": "return",
+   "transactions": 2,
+   "gas": "68374",
+   "feesQIE": "0.000076920750000000"
+  }
+ ],
+ "qusdc": {
+  "funderReceivedFromSwap": "0.980746",
+  "fundedToMembers": "3.224800",
+  "returnedByMembersToFunder": "3.211900",
+  "membersPaidIntoCircles": "3.104800",
+  "circlesPaidToMembers": "3.091900",
+  "treasuryIncome": "0.012900",
+  "returnedToOwner": "0.980746",
+  "circlesNet": "0.000000",
+  "membersNetAcrossAllCircles": "-0.012900"
+ },
+ "finalBalances": {
+  "circles": [
+   {
+    "circle": "0x4a26e0c8f314a752FBd7EB82375B4066b4D1F291",
+    "tokenBalance": "0.000000",
+    "accounted": "0.000000",
+    "totalWithdrawable": "0.000000"
+   },
+   {
+    "circle": "0x84f78c7aE65dc91c6C1367a33366380EC49Ce421",
+    "tokenBalance": "0.000000",
+    "accounted": "0.000000",
+    "totalWithdrawable": "0.000000"
+   },
+   {
+    "circle": "0x27A34e931156781BA256A353d7aBb28DBF464Ec0",
+    "tokenBalance": "0.000000",
+    "accounted": "0.000000",
+    "totalWithdrawable": "0.000000"
+   },
+   {
+    "circle": "0x474E6c16b43ff480f078186e6278451babB7E110",
+    "tokenBalance": "0.000000",
+    "accounted": "0.000000",
+    "totalWithdrawable": "0.000000"
+   },
+   {
+    "circle": "0xe7461b1505f74663707786C3fc22bCBB8aaAc804",
+    "tokenBalance": "0.000000",
+    "accounted": "0.000000",
+    "totalWithdrawable": "0.000000"
+   },
+   {
+    "circle": "0x905Fc41c695bf97A915B2dEA901bC4bE6edA6526",
+    "tokenBalance": "0.000000",
+    "accounted": "0.000000",
+    "totalWithdrawable": "0.000000"
+   },
+   {
+    "circle": "0x6330787fFc96019D1806C8e2EAb0C34d3202B054",
+    "tokenBalance": "0.000000",
+    "accounted": "0.000000",
+    "totalWithdrawable": "0.000000"
+   }
+  ],
+  "wallets": [
+   {
+    "role": "test funder / factory treasury / deployer",
+    "address": "0x918Da8404d39195dEbB2c039F376ce7ab922db76",
+    "qie": "0.000047250000000000",
+    "qusdc": "0.000000"
+   },
+   {
+    "role": "member Sipho",
+    "address": "0x15e58fFF4eA6a954D8E02F20C07544eb6EAC036A",
+    "qie": "0.000023625000000000",
+    "qusdc": "0.000000"
+   },
+   {
+    "role": "member Thandi",
+    "address": "0xc83847e16AAb28Bc39093D5fd11fC39aaCAA2EF3",
+    "qie": "0.000023625000000000",
+    "qusdc": "0.000000"
+   },
+   {
+    "role": "member Ayesha",
+    "address": "0xA6AE5bFd19E1EABDD2e2bF1B4180dBB71ee2cBA5",
+    "qie": "0.000023625000000000",
+    "qusdc": "0.000000"
+   },
+   {
+    "role": "member Bilal",
+    "address": "0x23d676B5146CAe065bB699d60Cff387558870D3d",
+    "qie": "0.000023625000000000",
+    "qusdc": "0.000000"
+   },
+   {
+    "role": "member Naledi",
+    "address": "0xDB43A27c047643758259F996A3827afEbdb1F911",
+    "qie": "0.000023625000000000",
+    "qusdc": "0.000000"
+   },
+   {
+    "role": "member Farah",
+    "address": "0x16ada809013a7f41D33Ab5099909a2773bbf6fAb",
+    "qie": "0.000023625000000000",
+    "qusdc": "0.000000"
+   },
+   {
+    "role": "owner's main wallet (not a test wallet)",
+    "address": "0x7145be20923340bbea3469c3804b384b93356910",
+    "qie": "17.224440890625000000",
+    "qusdc": "0.980746"
+   }
+  ]
+ },
+ "memberNetPerCircle": [
+  {
+   "circle": "0x4a26e0c8f314a752FBd7EB82375B4066b4D1F291",
+   "member": "Sipho",
+   "paidIn": "0.060000",
+   "paidOut": "0.059800",
+   "netOnChain": "-0.000200",
+   "runnerExpected": "-0.0002",
+   "agrees": true
+  },
+  {
+   "circle": "0x4a26e0c8f314a752FBd7EB82375B4066b4D1F291",
+   "member": "Thandi",
+   "paidIn": "0.060000",
+   "paidOut": "0.059800",
+   "netOnChain": "-0.000200",
+   "runnerExpected": "-0.0002",
+   "agrees": true
+  },
+  {
+   "circle": "0x84f78c7aE65dc91c6C1367a33366380EC49Ce421",
+   "member": "Sipho",
+   "paidIn": "0.100000",
+   "paidOut": "0.099600",
+   "netOnChain": "-0.000400",
+   "runnerExpected": "-0.0004",
+   "agrees": true
+  },
+  {
+   "circle": "0x84f78c7aE65dc91c6C1367a33366380EC49Ce421",
+   "member": "Thandi",
+   "paidIn": "0.100000",
+   "paidOut": "0.099600",
+   "netOnChain": "-0.000400",
+   "runnerExpected": "-0.0004",
+   "agrees": true
+  },
+  {
+   "circle": "0x84f78c7aE65dc91c6C1367a33366380EC49Ce421",
+   "member": "Ayesha",
+   "paidIn": "0.090000",
+   "paidOut": "0.089600",
+   "netOnChain": "-0.000400",
+   "runnerExpected": "-0.0004",
+   "agrees": true
+  },
+  {
+   "circle": "0x84f78c7aE65dc91c6C1367a33366380EC49Ce421",
+   "member": "Bilal",
+   "paidIn": "0.090000",
+   "paidOut": "0.089600",
+   "netOnChain": "-0.000400",
+   "runnerExpected": "-0.0004",
+   "agrees": true
+  },
+  {
+   "circle": "0x27A34e931156781BA256A353d7aBb28DBF464Ec0",
+   "member": "Sipho",
+   "paidIn": "0.100000",
+   "paidOut": "0.099700",
+   "netOnChain": "-0.000300",
+   "runnerExpected": "-0.0003",
+   "agrees": true
+  },
+  {
+   "circle": "0x27A34e931156781BA256A353d7aBb28DBF464Ec0",
+   "member": "Thandi",
+   "paidIn": "0.080000",
+   "paidOut": "0.079700",
+   "netOnChain": "-0.000300",
+   "runnerExpected": "-0.0003",
+   "agrees": true
+  },
+  {
+   "circle": "0x27A34e931156781BA256A353d7aBb28DBF464Ec0",
+   "member": "Ayesha",
+   "paidIn": "0.080000",
+   "paidOut": "0.079700",
+   "netOnChain": "-0.000300",
+   "runnerExpected": "-0.0003",
+   "agrees": true
+  },
+  {
+   "circle": "0x474E6c16b43ff480f078186e6278451babB7E110",
+   "member": "Sipho",
+   "paidIn": "0.080000",
+   "paidOut": "0.079700",
+   "netOnChain": "-0.000300",
+   "runnerExpected": "-0.0003",
+   "agrees": true
+  },
+  {
+   "circle": "0x474E6c16b43ff480f078186e6278451babB7E110",
+   "member": "Thandi",
+   "paidIn": "0.080000",
+   "paidOut": "0.079700",
+   "netOnChain": "-0.000300",
+   "runnerExpected": "-0.0003",
+   "agrees": true
+  },
+  {
+   "circle": "0x474E6c16b43ff480f078186e6278451babB7E110",
+   "member": "Ayesha",
+   "paidIn": "0.080000",
+   "paidOut": "0.079700",
+   "netOnChain": "-0.000300",
+   "runnerExpected": "-0.0003",
+   "agrees": true
+  },
+  {
+   "circle": "0xe7461b1505f74663707786C3fc22bCBB8aaAc804",
+   "member": "Sipho",
+   "paidIn": "0.116800",
+   "paidOut": "0.115660",
+   "netOnChain": "-0.001140",
+   "runnerExpected": "-0.00114",
+   "agrees": true
+  },
+  {
+   "circle": "0xe7461b1505f74663707786C3fc22bCBB8aaAc804",
+   "member": "Thandi",
+   "paidIn": "0.112000",
+   "paidOut": "0.111660",
+   "netOnChain": "-0.000340",
+   "runnerExpected": "-0.00034",
+   "agrees": true
+  },
+  {
+   "circle": "0xe7461b1505f74663707786C3fc22bCBB8aaAc804",
+   "member": "Ayesha",
+   "paidIn": "0.108000",
+   "paidOut": "0.107660",
+   "netOnChain": "-0.000340",
+   "runnerExpected": "-0.00034",
+   "agrees": true
+  },
+  {
+   "circle": "0xe7461b1505f74663707786C3fc22bCBB8aaAc804",
+   "member": "Bilal",
+   "paidIn": "0.104000",
+   "paidOut": "0.103660",
+   "netOnChain": "-0.000340",
+   "runnerExpected": "-0.00034",
+   "agrees": true
+  },
+  {
+   "circle": "0xe7461b1505f74663707786C3fc22bCBB8aaAc804",
+   "member": "Naledi",
+   "paidIn": "0.104000",
+   "paidOut": "0.103660",
+   "netOnChain": "-0.000340",
+   "runnerExpected": "-0.00034",
+   "agrees": true
+  },
+  {
+   "circle": "0x905Fc41c695bf97A915B2dEA901bC4bE6edA6526",
+   "member": "Sipho",
+   "paidIn": "0.140000",
+   "paidOut": "0.143400",
+   "netOnChain": "0.003400",
+   "runnerExpected": "0.0034",
+   "agrees": true
+  },
+  {
+   "circle": "0x905Fc41c695bf97A915B2dEA901bC4bE6edA6526",
+   "member": "Thandi",
+   "paidIn": "0.140000",
+   "paidOut": "0.143400",
+   "netOnChain": "0.003400",
+   "runnerExpected": "0.0034",
+   "agrees": true
+  },
+  {
+   "circle": "0x905Fc41c695bf97A915B2dEA901bC4bE6edA6526",
+   "member": "Ayesha",
+   "paidIn": "0.140000",
+   "paidOut": "0.143400",
+   "netOnChain": "0.003400",
+   "runnerExpected": "0.0034",
+   "agrees": true
+  },
+  {
+   "circle": "0x905Fc41c695bf97A915B2dEA901bC4bE6edA6526",
+   "member": "Bilal",
+   "paidIn": "0.140000",
+   "paidOut": "0.143400",
+   "netOnChain": "0.003400",
+   "runnerExpected": "0.0034",
+   "agrees": true
+  },
+  {
+   "circle": "0x905Fc41c695bf97A915B2dEA901bC4bE6edA6526",
+   "member": "Naledi",
+   "paidIn": "0.140000",
+   "paidOut": "0.143400",
+   "netOnChain": "0.003400",
+   "runnerExpected": "0.0034",
+   "agrees": true
+  },
+  {
+   "circle": "0x905Fc41c695bf97A915B2dEA901bC4bE6edA6526",
+   "member": "Farah",
+   "paidIn": "0.020000",
+   "paidOut": "0.000000",
+   "netOnChain": "-0.020000",
+   "runnerExpected": "-0.02",
+   "agrees": true
+  },
+  {
+   "circle": "0x6330787fFc96019D1806C8e2EAb0C34d3202B054",
+   "member": "Sipho",
+   "paidIn": "0.140000",
+   "paidOut": "0.139400",
+   "netOnChain": "-0.000600",
+   "runnerExpected": "-0.0006",
+   "agrees": true
+  },
+  {
+   "circle": "0x6330787fFc96019D1806C8e2EAb0C34d3202B054",
+   "member": "Thandi",
+   "paidIn": "0.140000",
+   "paidOut": "0.139400",
+   "netOnChain": "-0.000600",
+   "runnerExpected": "-0.0006",
+   "agrees": true
+  },
+  {
+   "circle": "0x6330787fFc96019D1806C8e2EAb0C34d3202B054",
+   "member": "Ayesha",
+   "paidIn": "0.140000",
+   "paidOut": "0.139400",
+   "netOnChain": "-0.000600",
+   "runnerExpected": "-0.0006",
+   "agrees": true
+  },
+  {
+   "circle": "0x6330787fFc96019D1806C8e2EAb0C34d3202B054",
+   "member": "Bilal",
+   "paidIn": "0.140000",
+   "paidOut": "0.139400",
+   "netOnChain": "-0.000600",
+   "runnerExpected": "-0.0006",
+   "agrees": true
+  },
+  {
+   "circle": "0x6330787fFc96019D1806C8e2EAb0C34d3202B054",
+   "member": "Naledi",
+   "paidIn": "0.140000",
+   "paidOut": "0.139400",
+   "netOnChain": "-0.000600",
+   "runnerExpected": "-0.0006",
+   "agrees": true
+  },
+  {
+   "circle": "0x6330787fFc96019D1806C8e2EAb0C34d3202B054",
+   "member": "Farah",
+   "paidIn": "0.140000",
+   "paidOut": "0.139400",
+   "netOnChain": "-0.000600",
+   "runnerExpected": "-0.0006",
+   "agrees": true
+  }
+ ],
+ "memberNetAgreesWithRunner": true,
+ "checks": {
+  "scenarioChecksPassed": 86,
+  "note": "S6's 14 include the 2 S5 checks carried with its circle (factory registered, circle is new)"
+ }
+}

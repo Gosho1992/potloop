@@ -1,0 +1,25 @@
+Adopted 18 confirmed transactions from live-S1.log; continuing at step 21 (compareContributed), 2 state comparisons already done.
+STOPPED: Method 'HardhatEthersProvider.waitForTransaction' is not implemented
+  resuming: waiting for settle round 2 0xa2f518a004c74783bc3085d733bbf69c843043b1728d35a43324e52d49b3fe28
+STOPPED: Method 'HardhatEthersProvider.waitForTransaction' is not implemented
+  resuming: waiting for settle round 2 0xa2f518a004c74783bc3085d733bbf69c843043b1728d35a43324e52d49b3fe28
+  settle round 2: 0xa2f518a004c74783bc3085d733bbf69c843043b1728d35a43324e52d49b3fe28 gas 137843 fee 0.000155073375 QIE, total 0.0056876625 QIE
+  finalize S1: 0xe861a355e641c43861766546260450ec6daccc138f621c8501b847594767b8a5 gas 78330 fee 0.00008812125 QIE, total 0.00577578375 QIE
+  PASS every state change matched the simulator exactly (base units)
+  Sipho withdraws: 0x65cd3b5d0f4a88a2ab78074da11dbfadfac7aa7da5719637990c97ba0fe2e223 gas 67112 fee 0.000075501 QIE, total 0.00585128475 QIE
+  Thandi withdraws: 0x74e6f25933291ada59748dfe3c98fd3e27399cdfe429e2e618ceeb575af81bd4 gas 67112 fee 0.000075501 QIE, total 0.00592678575 QIE
+  PASS no member can withdraw a second time (reverts with NothingToWithdraw)
+  PASS treasury fee equals the simulator's (0.0004 QUSDC)
+  treasury withdraws the fee: 0xbbbab67df19d178f0958cab127e3f9caaa5c90c18535f206f5fab2d0a864600f gas 46090 fee 0.00005185125 QIE, total 0.005978637 QIE
+  PASS Sipho: wallet change equals the simulator's net (-0.0002 QUSDC)
+  PASS Thandi: wallet change equals the simulator's net (-0.0002 QUSDC)
+  PASS treasury received exactly the fee (0.0004 QUSDC)
+  PASS circle holds nothing after everyone withdrew (0.0 QUSDC left)
+  PASS every other circle's balance is unchanged (0 earlier circles)
+  Sipho returns 0.0598 QUSDC: 0x3d555d6503a9bb483b2930a7e6b342f205bc46850810c56b7ecc2ba6bc969ad3 gas 30262 fee 0.00003404475 QIE, total 0.00601268175 QIE
+  Sipho returns gas: 0x02b660f75b9a3290e6266d476fd0a837fb4e6b7079a4bc2108d606199579a2e2 gas 21000 fee 0.000023625 QIE, total 0.00603630675 QIE
+  Thandi returns 0.0598 QUSDC: 0xf9ec81bb509922f78014559fb9fe80bd71be02c0b70ac5a5092bfa2586848a6e gas 30262 fee 0.00003404475 QIE, total 0.0060703515 QIE
+  Thandi returns gas: 0x4268f2ce254ce9e72425f780214812a8f2f7580ead110b4166b87274828b13ff gas 21000 fee 0.000023625 QIE, total 0.0060939765 QIE
+
+Scenario 1: PASS. 10 checks passed, 0 failed. 27 transactions, gas 5416868, fees 0.0060939765 QIE.
+SCENARIO COMPLETE

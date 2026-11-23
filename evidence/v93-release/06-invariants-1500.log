@@ -1,0 +1,8 @@
+
+
+  SavingsCircle — invariants over 1500 random default patterns
+    ✔ ledgers always balance, the contract ends empty, and honest members are protected as promised (646504ms)
+
+
+  1 passing (11m)
+

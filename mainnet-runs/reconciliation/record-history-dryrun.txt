@@ -1,0 +1,10 @@
+recordCircle(0xe7461b1505f74663707786C3fc22bCBB8aaAc804) on factory 0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4
+  seat 1 0x15e58fFF4eA6a954D8E02F20C07544eb6EAC036A: +1 caught up, volume +0.1 QUSDC
+  seat 2 0xc83847e16AAb28Bc39093D5fd11fC39aaCAA2EF3: +1 completed, volume +0.1 QUSDC
+  seat 3 0xA6AE5bFd19E1EABDD2e2bF1B4180dBB71ee2cBA5: +1 completed, volume +0.1 QUSDC
+  seat 4 0x23d676B5146CAe065bB699d60Cff387558870D3d: +1 completed, volume +0.1 QUSDC
+  seat 5 0xDB43A27c047643758259F996A3827afEbdb1F911: +1 completed, volume +0.1 QUSDC
+  sender 0x7145be20923340bbea3469c3804b384b93356910; gas estimate 331272; at 1.125 gwei about 0.000372681 QIE (limit sent: 430653)
+  moves no QUSDC; every withdrawable and wallet balance must be unchanged afterwards
+  approval code for exactly this plan: R-ec585ac5
+DRY RUN: nothing was sent.

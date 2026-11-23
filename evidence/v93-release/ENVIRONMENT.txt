@@ -1,0 +1,6 @@
+date (UTC): 2026-11-23T10:57:01Z
+node v22.23.5, npm 10.9.9, Linux x86_64, 2 cores
+git revision: 2cfb6b20f6779047538f60ee37208e00880522bf
+solidity:  (optimizer: )
+hardhat: 2.29.2
+slither: 0.11.6

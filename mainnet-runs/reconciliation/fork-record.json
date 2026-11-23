@@ -1,0 +1,265 @@
+{
+ "part": "record",
+ "checks": [
+  {
+   "name": "record 0x4a26e0c8: one ResultRecorded per member with the circle's outcome",
+   "ok": true,
+   "detail": "outcomes 0,0"
+  },
+  {
+   "name": "record 0x4a26e0c8: recorded() is true",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x4a26e0c8: a second recording reverts with AlreadyRecorded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x4a26e0c8: no entitlement, wallet or circle balance changed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x84f78c7a: one ResultRecorded per member with the circle's outcome",
+   "ok": true,
+   "detail": "outcomes 0,0,0,0"
+  },
+  {
+   "name": "record 0x84f78c7a: recorded() is true",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x84f78c7a: a second recording reverts with AlreadyRecorded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x84f78c7a: no entitlement, wallet or circle balance changed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x27A34e93: one ResultRecorded per member with the circle's outcome",
+   "ok": true,
+   "detail": "outcomes 0,0,0"
+  },
+  {
+   "name": "record 0x27A34e93: recorded() is true",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x27A34e93: a second recording reverts with AlreadyRecorded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x27A34e93: no entitlement, wallet or circle balance changed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x474E6c16: one ResultRecorded per member with the circle's outcome",
+   "ok": true,
+   "detail": "outcomes 0,0,0"
+  },
+  {
+   "name": "record 0x474E6c16: recorded() is true",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x474E6c16: a second recording reverts with AlreadyRecorded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x474E6c16: no entitlement, wallet or circle balance changed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0xe7461b15: one ResultRecorded per member with the circle's outcome",
+   "ok": true,
+   "detail": "outcomes 1,0,0,0,0"
+  },
+  {
+   "name": "record 0xe7461b15: recorded() is true",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0xe7461b15: a second recording reverts with AlreadyRecorded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0xe7461b15: no entitlement, wallet or circle balance changed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x905Fc41c: one ResultRecorded per member with the circle's outcome",
+   "ok": true,
+   "detail": "outcomes 0,0,0,0,0,2"
+  },
+  {
+   "name": "record 0x905Fc41c: recorded() is true",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x905Fc41c: a second recording reverts with AlreadyRecorded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x905Fc41c: no entitlement, wallet or circle balance changed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x6330787f: one ResultRecorded per member with the circle's outcome",
+   "ok": true,
+   "detail": "outcomes 0,0,0,0,0,0"
+  },
+  {
+   "name": "record 0x6330787f: recorded() is true",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x6330787f: a second recording reverts with AlreadyRecorded",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "record 0x6330787f: no entitlement, wallet or circle balance changed",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "history of 0x15e58fFF after all 7 recordings",
+   "ok": true,
+   "detail": "completed 6, caught up 1, left early 0, walked away 0, volume 0.58"
+  },
+  {
+   "name": "history of 0xc83847e1 after all 7 recordings",
+   "ok": true,
+   "detail": "completed 7, caught up 0, left early 0, walked away 0, volume 0.58"
+  },
+  {
+   "name": "history of 0xA6AE5bFd after all 7 recordings",
+   "ok": true,
+   "detail": "completed 6, caught up 0, left early 0, walked away 0, volume 0.54"
+  },
+  {
+   "name": "history of 0x23d676B5 after all 7 recordings",
+   "ok": true,
+   "detail": "completed 4, caught up 0, left early 0, walked away 0, volume 0.42"
+  },
+  {
+   "name": "history of 0xDB43A27c after all 7 recordings",
+   "ok": true,
+   "detail": "completed 3, caught up 0, left early 0, walked away 0, volume 0.34"
+  },
+  {
+   "name": "history of 0x16ada809 after all 7 recordings",
+   "ok": true,
+   "detail": "completed 1, caught up 0, left early 1, walked away 0, volume 0.12"
+  }
+ ],
+ "notes": [],
+ "chainId": 1990,
+ "forkBlock": 12112869,
+ "recordings": [
+  {
+   "circle": "0x4a26e0c8f314a752FBd7EB82375B4066b4D1F291",
+   "members": 2,
+   "outcomes": [
+    0,
+    0
+   ],
+   "gasEstimate": "166528",
+   "gasUsed": "166528"
+  },
+  {
+   "circle": "0x84f78c7aE65dc91c6C1367a33366380EC49Ce421",
+   "members": 4,
+   "outcomes": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "gasEstimate": "207901",
+   "gasUsed": "207901"
+  },
+  {
+   "circle": "0x27A34e931156781BA256A353d7aBb28DBF464Ec0",
+   "members": 3,
+   "outcomes": [
+    0,
+    0,
+    0
+   ],
+   "gasEstimate": "118814",
+   "gasUsed": "118814"
+  },
+  {
+   "circle": "0x474E6c16b43ff480f078186e6278451babB7E110",
+   "members": 3,
+   "outcomes": [
+    0,
+    0,
+    0
+   ],
+   "gasEstimate": "118814",
+   "gasUsed": "118814"
+  },
+  {
+   "circle": "0xe7461b1505f74663707786C3fc22bCBB8aaAc804",
+   "members": 5,
+   "outcomes": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "gasEstimate": "194472",
+   "gasUsed": "194472"
+  },
+  {
+   "circle": "0x905Fc41c695bf97A915B2dEA901bC4bE6edA6526",
+   "members": 6,
+   "outcomes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2
+   ],
+   "gasEstimate": "190454",
+   "gasUsed": "190454"
+  },
+  {
+   "circle": "0x6330787fFc96019D1806C8e2EAb0C34d3202B054",
+   "members": 6,
+   "outcomes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "gasEstimate": "197973",
+   "gasUsed": "197973"
+  }
+ ]
+}

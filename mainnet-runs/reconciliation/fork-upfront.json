@@ -1,0 +1,94 @@
+{
+ "part": "upfront",
+ "checks": [
+  {
+   "name": "5 members, 20% cover, upfront: seat 1 defaults after payout and catches up: created on the real factory (circle #8)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "5 members, 20% cover, upfront: seat 1 defaults after payout and catches up: independent ledger equals the QUSDC balance after every step",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "5 members, 20% cover, upfront: seat 1 defaults after payout and catches up: circle ends holding 0 QUSDC",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "5 members, 20% cover, upfront: seat 1 defaults after payout and catches up: members' losses equal the treasury's fee (no QUSDC created or lost)",
+   "ok": true,
+   "detail": "fee 0.0025 QUSDC"
+  },
+  {
+   "name": "5 members, 20% cover, upfront: seat 1 defaults after payout and catches up: results recorded",
+   "ok": true,
+   "detail": "outcomes 1,0,0,0,0"
+  },
+  {
+   "name": "4 members, 0% cover, upfront: seat 1 walks away (uncovered loss): created on the real factory (circle #9)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "4 members, 0% cover, upfront: seat 1 walks away (uncovered loss): independent ledger equals the QUSDC balance after every step",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "4 members, 0% cover, upfront: seat 1 walks away (uncovered loss): circle ends holding 0 QUSDC",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "4 members, 0% cover, upfront: seat 1 walks away (uncovered loss): members' losses equal the treasury's fee (no QUSDC created or lost)",
+   "ok": true,
+   "detail": "fee 0.0013 QUSDC"
+  },
+  {
+   "name": "4 members, 0% cover, upfront: seat 1 walks away (uncovered loss): results recorded",
+   "ok": true,
+   "detail": "outcomes 3,0,0,0"
+  }
+ ],
+ "notes": [],
+ "chainId": 1990,
+ "forkBlock": 12112869,
+ "circle": {
+  "label": "5 members, 20% cover, upfront: seat 1 defaults after payout and catches up",
+  "circle": "0xcf2f8b769447E15006afaEBBd9d1263669B53c1c",
+  "nets": [
+   "-1140",
+   "-340",
+   "-340",
+   "-340",
+   "-340"
+  ],
+  "fee": "2500",
+  "outcomes": [
+   1,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "circle2": {
+  "label": "4 members, 0% cover, upfront: seat 1 walks away (uncovered loss)",
+  "circle": "0xC1F7789630706128677569f9d737870190fb45FF",
+  "nets": [
+   "59600",
+   "-20300",
+   "-20300",
+   "-20300"
+  ],
+  "fee": "1300",
+  "outcomes": [
+   3,
+   0,
+   0,
+   0
+  ]
+ }
+}

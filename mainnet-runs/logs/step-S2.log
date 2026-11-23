@@ -1,0 +1,90 @@
+
+S2: 4 members, 0.02 QUSDC per round, 50% cover, collateral from the pot
+  fund Sipho 0.1 QUSDC: 0x5632efcca220f66916990cbecaf3f5628ac4a13871870ec38ad00f89b9720e62 gas 52174 fee 0.00005869575 QIE, total 0.00005869575 QIE
+  fund Sipho gas: 0xe4dc29239930b68ef7f983de52f79f612331f1c7ca154a462b3ec6da7b780f0b gas 21000 fee 0.000023625 QIE, total 0.00008232075 QIE
+  fund Thandi 0.1 QUSDC: 0x3824a69e8885750445169fa9051565e0abc8eae981c6fc6e9f7b84418dfc9939 gas 52174 fee 0.00005869575 QIE, total 0.0001410165 QIE
+  fund Thandi gas: 0xf25178088e7c1f237e360cf8949685d93151bb852fd9cff5ebe92d19ed146041 gas 21000 fee 0.000023625 QIE, total 0.0001646415 QIE
+  fund Ayesha 0.09 QUSDC: 0xa766d89d1013c25a547cd7115c1625fef341c1f0ac5da9fd9c029be35bba1add gas 52174 fee 0.00005869575 QIE, total 0.00022333725 QIE
+  fund Ayesha gas: 0x3c8557a6d7b0225ade7686f5f31138c969bb37e82ae12fc7a4b29a04b1b9e1b5 gas 21000 fee 0.000023625 QIE, total 0.00024696225 QIE
+  fund Bilal 0.09 QUSDC: 0x5d298b7a5b84175f8931ef8899baae8313a8a06866c5b6d6fcd56782b8b601c9 gas 52174 fee 0.00005869575 QIE, total 0.000305658 QIE
+  fund Bilal gas: 0xf2425494a54a0e98cdeabe3bc68e15094531eeaf4ab0895c050183333298e3cb gas 21000 fee 0.000023625 QIE, total 0.000329283 QIE
+  create S2: 0x9b87cf0af315b6b6d3e1dea05caf9702c67bfebe0d574bc3e140981b65982303 gas 3599490 fee 0.00404942625 QIE, total 0.00437870925 QIE
+  circle 0x84f78c7aE65dc91c6C1367a33366380EC49Ce421
+  PASS factory registered the new circle
+  PASS circle is new (not one of the earlier circles)
+  Sipho approves 0.02 collateral: 0xc545ee1a5403b33861d22fa368c8ca47832b0efcf1ff5ab3daeb11f242b3b81f gas 46949 fee 0.000052817625 QIE, total 0.004431526875 QIE
+  Sipho accepts seat 1: 0xc2bcde77dfc1d93a06fbf2428f1345b6050bfa3b336fcf071c820d521ee3092b gas 169037 fee 0.000190166625 QIE, total 0.0046216935 QIE
+  Thandi approves 0.02 collateral: 0xd978e575688e35eb7cd5f74ffa0c97479d22ee9612e04a05dfba7881c3798b05 gas 46949 fee 0.000052817625 QIE, total 0.004674511125 QIE
+  Thandi accepts seat 2: 0x8f80e2832db7254631eee4df292c6b8fc09d871fe3b20d021bf98de41dc416ed gas 134833 fee 0.000151687125 QIE, total 0.00482619825 QIE
+  Ayesha approves 0.01 collateral: 0xcd4d6ec718938131a56c1f05b4c86900fadc3fc1e800d57155f7fa00dabb66c9 gas 46949 fee 0.000052817625 QIE, total 0.004879015875 QIE
+  Ayesha accepts seat 3: 0x9787f154690021320bf024ed1151e774bfce37c372878bb863d736181bf331e8 gas 151933 fee 0.000170924625 QIE, total 0.0050499405 QIE
+  Bilal approves 0.01 collateral: 0xbe605a4635da9bc1f3a7219dc9527fae357d7b23f9f89f52462458315acc15e1 gas 46949 fee 0.000052817625 QIE, total 0.005102758125 QIE
+CONTINUE: paused before step 18 of 76 (accept). Run the same command again.
+  Bilal accepts seat 4: 0x6ccb0f2af61fe41f44f33949c1450bf9660594b85479fbb5642246dd27065f73 gas 217350 fee 0.00024451875 QIE, total 0.005347276875 QIE
+  Sipho approves round 1: 0x1830f5644ed40f1c229e161c5ab5fe15456760f62106ea8e7a44485140113723 gas 46949 fee 0.000052817625 QIE, total 0.0054000945 QIE
+  Sipho pays round 1: 0xd1019333e7564aaaac2165c0c493e932c9cc6b3d531bc5b3c942ba4e3204d76c gas 126008 fee 0.000141759 QIE, total 0.0055418535 QIE
+  Thandi approves round 1: 0x340ca19a9bff7d176598e223d5eb9f187e04dc2df38c391b94ddab015b3c918f gas 46949 fee 0.000052817625 QIE, total 0.005594671125 QIE
+  Thandi pays round 1: 0x97e51c2afb4b7f6a6b5f7026d4e562496342478baa01afc1ce489db9deb216a8 gas 108908 fee 0.0001225215 QIE, total 0.005717192625 QIE
+  Ayesha approves round 1: 0x74d5bbec601b7192a25990971870b8f9b7a07aadf7b6964701f124c8bdd62f6b gas 46949 fee 0.000052817625 QIE, total 0.00577001025 QIE
+  Ayesha pays round 1: 0x6e846506e58761e743fb6166a0b57af45e7222c6dcc03c8b9640fb695f6f90ae gas 108908 fee 0.0001225215 QIE, total 0.00589253175 QIE
+  Bilal approves round 1: 0xe50fb9a1a340277d8726d4b7a345139b0eb3c3f54946db6e1db63246ca562870 gas 46949 fee 0.000052817625 QIE, total 0.005945349375 QIE
+  Bilal pays round 1: 0x7afe0b7e8fe52918dcfc72cb0bf9c005b644c69d3f3acf1fcd45a0e8ad40e9f5 gas 108908 fee 0.0001225215 QIE, total 0.006067870875 QIE
+  settle round 1: 0x0f943e7e238c8236c74a84a21ce31ffdc93587390ec16ff3bc3e71d8c95c656b gas 155958 fee 0.00017545275 QIE, total 0.006243323625 QIE
+  Sipho approves round 2: 0xdc5690585eec0ec4e43b69e15916bec460832aad50860b273fe6b6f78865cd20 gas 46949 fee 0.000052817625 QIE, total 0.00629614125 QIE
+  Sipho pays round 2: 0xa45a9c5890cabd83143555fed6cbe13699bb1fe3ffd435a7fe65a8a262969705 gas 108908 fee 0.0001225215 QIE, total 0.00641866275 QIE
+  Thandi approves round 2: 0x5480d619cbb7d7e38f03b38eca36a3716402fe517643be24bd02bfd73482c455 gas 46949 fee 0.000052817625 QIE, total 0.006471480375 QIE
+CONTINUE: paused before step 32 of 76 (pay). Run the same command again.
+  Thandi pays round 2: 0x88683a4bd42cce00ce4f284a40bbef17de9756eacfe343697f2ada0915604fff gas 91808 fee 0.000103284 QIE, total 0.006574764375 QIE
+  Ayesha approves round 2: 0x441733216fdddd511f41b5600f93dd3767cdfc23da78d6b352fe1886f605e380 gas 46949 fee 0.000052817625 QIE, total 0.006627582 QIE
+  Ayesha pays round 2: 0x6cc499da8b0f45bdc7db798bcd493402d2ee8556c6a0500167a0a42ce2a2c0ef gas 91808 fee 0.000103284 QIE, total 0.006730866 QIE
+  Bilal approves round 2: 0x6a9ea16322bbacaa66749d13241b6c0d2833db23a8eb8bff9f0021e9dd35ba05 gas 46949 fee 0.000052817625 QIE, total 0.006783683625 QIE
+  Bilal pays round 2: 0xa1f8404e6f8240715830308936ecd14bb20dd48316986418d4702a1f13e94e44 gas 91808 fee 0.000103284 QIE, total 0.006886967625 QIE
+  settle round 2: 0xf4a31eb9fa1057b9cd18482b6e4b800c1495ea880d7c7e82151c733ea1319a92 gas 113911 fee 0.000128149875 QIE, total 0.0070151175 QIE
+  Sipho approves round 3: 0x04f9f75cba22236dddb7a2fab1f3aa95eddb031b791a529205349462315ed2c1 gas 46949 fee 0.000052817625 QIE, total 0.007067935125 QIE
+  Sipho pays round 3: 0x316d046df2806c5ae483f552bdc3a17113e8a55878f7c2f23b73b5703257fc90 gas 108908 fee 0.0001225215 QIE, total 0.007190456625 QIE
+  Thandi approves round 3: 0xdc4711449b7a2cbdf6082cbe24129a261404d247a25df1b2e654b069ecd07918 gas 46949 fee 0.000052817625 QIE, total 0.00724327425 QIE
+  Thandi pays round 3: 0xd690f4081763d51401f735e1d61819cfbee5e9177055a81fbee7a1252f36af18 gas 91808 fee 0.000103284 QIE, total 0.00734655825 QIE
+  Ayesha approves round 3: 0xbcf0380539b0727ccae71ed15af9e5920ed8c1cf962e76b8f55f842fee2a7650 gas 46949 fee 0.000052817625 QIE, total 0.007399375875 QIE
+  Ayesha pays round 3: 0xb7eb5b1930c68d29d46d32bd4625c1a7529eebe749837c5ae2b5143697ede1a0 gas 91808 fee 0.000103284 QIE, total 0.007502659875 QIE
+CONTINUE: paused before step 45 of 76 (approvePay). Run the same command again.
+  Bilal approves round 3: 0x504d6048bf9b578225e58e855515555222499df3de5ff5faf199fbd83fb8fac8 gas 46949 fee 0.000052817625 QIE, total 0.0075554775 QIE
+  Bilal pays round 3: 0xe0677cc891b0bdb749821f99bdfb5295362844bb833c660cfe327d420e5363c0 gas 91808 fee 0.000103284 QIE, total 0.0076587615 QIE
+  settle round 3: 0x110f27eadd3b52c135df4631e54cdda2e5f15b7f8fb843021e255628c2513bdd gas 113911 fee 0.000128149875 QIE, total 0.007786911375 QIE
+  Sipho approves round 4: 0x0d42bae8cd697de380e6b7a058849ec08d682ed0175f7e4aaecbb828e054a5d8 gas 46949 fee 0.000052817625 QIE, total 0.007839729 QIE
+  Sipho pays round 4: 0x0d2ce4f769ca43dad3e4dd242fdd44e28bb727d9bce020a460761eb0d81922fd gas 104108 fee 0.0001171215 QIE, total 0.0079568505 QIE
+  Thandi approves round 4: 0xf5aebcebbb80437783250cf55194fac36c36abb6c16251725443a9c233500cc7 gas 46949 fee 0.000052817625 QIE, total 0.008009668125 QIE
+  Thandi pays round 4: 0x45140f68fe4e694d687baedafb72bc9a7098a0707cbf9bb77973b5abb7915513 gas 87008 fee 0.000097884 QIE, total 0.008107552125 QIE
+  Ayesha approves round 4: 0xe9b10ef0d31644b9a0de93591edbb802ee91476aceb8bd079793623f0d2b7117 gas 46949 fee 0.000052817625 QIE, total 0.00816036975 QIE
+  Ayesha pays round 4: 0xf41eb6db3af3cd10df5962836cf7cb11f63c12a8063155c0685c3e54d7ee574a gas 87008 fee 0.000097884 QIE, total 0.00825825375 QIE
+  Bilal approves round 4: 0xd1b0f89f4072ee23ddc50258b1184d389d22897ceff123a90b9a246a6f2f7f72 gas 46949 fee 0.000052817625 QIE, total 0.008311071375 QIE
+  Bilal pays round 4: 0x970d08dcca309420dc8b57d73b4b7878f839de06bc737a95eaec1e0fd181516b gas 87008 fee 0.000097884 QIE, total 0.008408955375 QIE
+  settle round 4: 0xf84ba78aba293221bd9674f42bbc8fdcdbe90e0ffa518747e564d3303986c056 gas 149901 fee 0.000168638625 QIE, total 0.008577594 QIE
+CONTINUE: paused before step 59 of 76 (finalize). Run the same command again.
+  finalize S2: 0x37c6d7df1debc11ea8d265bca53623bcdffe371c49c75f1f84dd0d04797f01c9 gas 113322 fee 0.00012748725 QIE, total 0.00870508125 QIE
+  PASS every state change matched the simulator exactly (base units)
+  Sipho withdraws: 0x987261d2236abd0046f4c1975293fe2df7ae53684620737e451a24ce155daab3 gas 67112 fee 0.000075501 QIE, total 0.00878058225 QIE
+  Thandi withdraws: 0xff54a08deea608047839ae87697dbccf54c138a860fd94ca2f92bb1a10df1651 gas 67112 fee 0.000075501 QIE, total 0.00885608325 QIE
+  Ayesha withdraws: 0x94b2106196076a6b8c8a7459e8a1edfecaef9e7ed91934aaec204c73a2a57967 gas 67112 fee 0.000075501 QIE, total 0.00893158425 QIE
+  Bilal withdraws: 0xbec07f3852dc3fe0bcedfb3ffddbe715429fb914f761991dad44d6a6e853486d gas 67112 fee 0.000075501 QIE, total 0.00900708525 QIE
+  PASS no member can withdraw a second time (reverts with NothingToWithdraw)
+  PASS treasury fee equals the simulator's (0.0016 QUSDC)
+  treasury withdraws the fee: 0x98ff9c6766f343c73649ec3225eaa69295d27cc60c4e41e98251de9211504408 gas 46090 fee 0.00005185125 QIE, total 0.0090589365 QIE
+  PASS Sipho: wallet change equals the simulator's net (-0.0004 QUSDC)
+  PASS Thandi: wallet change equals the simulator's net (-0.0004 QUSDC)
+  PASS Ayesha: wallet change equals the simulator's net (-0.0004 QUSDC)
+  PASS Bilal: wallet change equals the simulator's net (-0.0004 QUSDC)
+  PASS treasury received exactly the fee (0.0016 QUSDC)
+  PASS circle holds nothing after everyone withdrew (0.0 QUSDC left)
+  PASS every other circle's balance is unchanged (1 earlier circles)
+  Sipho returns 0.0996 QUSDC: 0x675b7cd855d2bcbcb3ebf7cf3c78c31765218bfd422b991313661b566ce27203 gas 30274 fee 0.00003405825 QIE, total 0.00909299475 QIE
+  Sipho returns gas: 0x669af479eb63710952611cb6dbb13ba9edd6a13f638ec6fdc5fd71f454191fda gas 21000 fee 0.000023625 QIE, total 0.00911661975 QIE
+  Thandi returns 0.0996 QUSDC: 0xc921488bfe5a9c56ae59a42c692d6ba3ba1873c9a1883bdd9f5596045832f6e4 gas 30274 fee 0.00003405825 QIE, total 0.009150678 QIE
+  Thandi returns gas: 0x7c6bdb99adea7f96a15735aa93b4ee6a5c6d95d471a3444b82cc3756370f0ed8 gas 21000 fee 0.000023625 QIE, total 0.009174303 QIE
+CONTINUE: paused before step 71 of 76 (sweepQ). Run the same command again.
+  Ayesha returns 0.0896 QUSDC: 0x210aec998a59343ab38cd050eebd887a4a6121a6c08b08dbf6ed124f7a3d3262 gas 30262 fee 0.00003404475 QIE, total 0.00920834775 QIE
+  Ayesha returns gas: 0x4f2def5299f48924893f233dce8e83117b1710aed2b7743e01f08607e9458b9b gas 21000 fee 0.000023625 QIE, total 0.00923197275 QIE
+  Bilal returns 0.0896 QUSDC: 0xfb33ef6db27eb30358c2368a8225999648325ca86da87c581038b889434fbf5d gas 30262 fee 0.00003404475 QIE, total 0.0092660175 QIE
+  Bilal returns gas: 0x55f5644e0980c67967316d4b85056e2ea2347f5866e4c671d49ba68a2df3966a gas 21000 fee 0.000023625 QIE, total 0.0092896425 QIE
+
+Scenario 2: PASS. 12 checks passed, 0 failed. 67 transactions, gas 8257460, fees 0.0092896425 QIE.
+SCENARIO COMPLETE

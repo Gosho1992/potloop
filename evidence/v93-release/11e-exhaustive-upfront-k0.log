@@ -1,0 +1,15 @@
+
+
+  SavingsCircle — exhaustive default patterns
+      1000 / 7776 patterns OK at k=0, upfront collateral
+      2000 / 7776 patterns OK at k=0, upfront collateral
+      3000 / 7776 patterns OK at k=0, upfront collateral
+      4000 / 7776 patterns OK at k=0, upfront collateral
+      5000 / 7776 patterns OK at k=0, upfront collateral
+      6000 / 7776 patterns OK at k=0, upfront collateral
+      7000 / 7776 patterns OK at k=0, upfront collateral
+    ✔ all 7,776 patterns at coverage 0%, upfront collateral (1980262ms)
+
+
+  1 passing (33m)
+

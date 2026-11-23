@@ -1,0 +1,11 @@
+attempt,scenario,kind,circles,report,outcome,checksPassed,checksFailed,newTransactions,reverted
+A0,deploy,factory deployment,0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4,logs/deploy.log,SUCCESS,,,1,0
+A1,S1,"first runner, stopped by the command time limit (not a test failure)",0x4a26e0c8f314a752FBd7EB82375B4066b4D1F291,live-S1-2026-11-23T08-15-43-037Z.json,INTERRUPTED,,,18,0
+A2,S1,"resumable runner, continued from the next step",0x4a26e0c8f314a752FBd7EB82375B4066b4D1F291,live-S1-2026-11-23T08-15-43-037Z.json,PASS,10,0,9,0
+A3,S2,scenario run,0x84f78c7aE65dc91c6C1367a33366380EC49Ce421,live-S2-2026-11-23T08-25-56-488Z.json,PASS,12,0,67,0
+A4,S3,scenario run,0x27A34e931156781BA256A353d7aBb28DBF464Ec0 0x474E6c16b43ff480f078186e6278451babB7E110,live-S3-2026-11-23T08-41-04-474Z.json,PASS,23,0,90,0
+A5,S4,scenario run,0xe7461b1505f74663707786C3fc22bCBB8aaAc804,live-S4-2026-11-23T08-54-30-957Z.json,PASS,13,0,89,0
+A6,S5,"six members, sequential payments",0x905Fc41c695bf97A915B2dEA901bC4bE6edA6526,live-S5-2026-11-23T09-03-39-273Z.json,FAIL,2,1,37,1
+A7,S6,continuation of S5's circle (not a new circle),0x905Fc41c695bf97A915B2dEA901bC4bE6edA6526,live-S6-2026-11-23T09-11-42-459Z.json,PASS,12 new (+2 carried from S5),0,75,0
+A8,S7,"fresh repeat of S5 (new circle, parallel payments)",0x6330787fFc96019D1806C8e2EAb0C34d3202B054,live-S7-2026-11-23T09-23-35-489Z.json,PASS,14,0,123,0
+A9,return,all remaining test funds sent to the owner's main wallet,,logs/return-to-main.log,SUCCESS,,,2,0

@@ -1,0 +1,76 @@
+{
+  "at": "2026-11-23T08:03:40.885Z",
+  "chainId": "1990",
+  "block": 12109977,
+  "gasPriceWei": "1125000000",
+  "blockers": [],
+  "funder": "0x918Da8404d39195dEbB2c039F376ce7ab922db76",
+  "funderQie": "1993503983375000000",
+  "funderQusdc": "980746",
+  "factory": {
+    "address": "0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4",
+    "deployer": "0xb24EcA9a5cbdab9e05963d22461f1d704ac41B00",
+    "rules": [
+      "0x3F43DA82eC9A4f5285F10FaF1F26EcA7319E5DA5",
+      "0x918Da8404d39195dEbB2c039F376ce7ab922db76",
+      "50",
+      "60",
+      "30",
+      "10000",
+      "0",
+      "92"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": 1,
+      "title": "Two-member smoke test: join, contribute, payout, finalize, withdraw",
+      "transactions": "27",
+      "gas": "5419266",
+      "costWeiWithMargin": "7925675625000000",
+      "qusdcPeak": "120000",
+      "approval": "S1-d9a14bd2"
+    },
+    {
+      "id": 2,
+      "title": "Four-member normal lifecycle, every round completed",
+      "transactions": "67",
+      "gas": "8297445",
+      "costWeiWithMargin": "12135012750000000",
+      "qusdcPeak": "380000",
+      "approval": "S2-4ff83b17"
+    },
+    {
+      "id": 3,
+      "title": "Collateral modes compared: the same circle with upfront collateral and with collateral held from the pot",
+      "transactions": "90",
+      "gas": "13453900",
+      "costWeiWithMargin": "19676328750000000",
+      "qusdcPeak": "260000",
+      "approval": "S3-012fcb51"
+    },
+    {
+      "id": 4,
+      "title": "Default and recovery: seat 1 takes the pot and stops, collateral pays, short payouts, catch-up, repayments",
+      "transactions": "89",
+      "gas": "10131152",
+      "costWeiWithMargin": "14816809125000000",
+      "qusdcPeak": "544800",
+      "approval": "S4-3740e9a4"
+    },
+    {
+      "id": 5,
+      "title": "Six-member complete acceptance lifecycle: all payouts, finalize, all withdrawals",
+      "transactions": "123",
+      "gas": "12357460",
+      "costWeiWithMargin": "18072785250000000",
+      "qusdcPeak": "840000",
+      "approval": "S5-578b1d76"
+    }
+  ],
+  "totalScenarioCostWei": "72626611500000000",
+  "memberGasFloatWei": "18000000000000000",
+  "reserveWei": "20000000000000000",
+  "needQieWei": "110626611500000000",
+  "needQusdc": "840000"
+}

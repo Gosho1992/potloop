@@ -1,0 +1,180 @@
+
+
+  Collateral modes across the circle's lifecycle (on the contract)
+    ✔ every situation: rules hold, balances match the simulator, and the modes differ only where documented (17667ms)
+    ✔ leaving before the start and a cancelled circle return exactly what was locked (upfront) (42ms)
+    ✔ leaving before the start and a cancelled circle return exactly what was locked (from the pot) (39ms)
+
+  SavingsCircle — attack and state-machine tests
+    ✔ reentrancy: a malicious token cannot make withdraw() pay twice (86ms)
+    ✔ phase rules: no early activate, no contribution before start, no cancel once full (66ms)
+    ✔ after the last round: no more contributions or settles, finalize only once, withdraw only once (245ms)
+    ✔ a member cannot join after the join window closes
+
+  SavingsCircle — exhaustive default patterns
+    - all 7,776 patterns at coverage 0%, upfront collateral
+    - all 7,776 patterns at coverage 50%, upfront collateral
+    - all 7,776 patterns at coverage 100%, upfront collateral
+    - all 7,776 patterns at coverage 0%, collateral from the pot
+    - all 7,776 patterns at coverage 50%, collateral from the pot
+    - all 7,776 patterns at coverage 100%, collateral from the pot
+
+  SavingsCircle — invariants over 150 random default patterns
+    ✔ ledgers always balance, the contract ends empty, and honest members are protected as promised (32072ms)
+
+  SavingsCircle — spec v3 worked examples
+    ✔ collateral by slot at 50%: 200 / 150 / 100 / 50 / 50 (last slot locks one share too)
+    ✔ honest cycle: everyone ends even, all collateral returned (196ms)
+    ✔ risk meter matches the spec table in an honest cycle (191ms)
+    ✔ post-payout default: A takes the pot and stops; D and E lose 100 each (237ms)
+    ✔ post-payout default late: A misses only rounds 4–5, collateral covers it all (256ms)
+    ✔ pre-payout default: C stops in round 2; C forfeits one share (100), honest members split it (228ms)
+    ✔ recipient misses their own round: C pays rounds 1–2, misses 3, gets no pot (252ms)
+    ✔ last slot: E stops in round 2; E's 50 collateral helps B at once, B, C, D are repaid in round 5 (223ms)
+    ✔ two pre-payout defaults (C and E): each forfeits one share, honest members gain, nobody honest loses (228ms)
+    ✔ mixed: A defaults after payout, C before; B, D, E even, A +200, C −200 (162ms)
+    ✔ four of five leave early: no stuck funds, the honest member collects their four penalties (159ms)
+    ✔ 0% coverage: A takes the pot and stops; every later recipient loses 100 (237ms)
+    ✔ 100% coverage: A takes the pot and stops; nobody loses anything (300ms)
+
+  SavingsCircle — safety checks
+    ✔ rejects bad setups: duplicate member, zero address, unsupported coverage (48ms)
+    ✔ only the assigned address can accept a slot, and only once (38ms)
+    ✔ no double contribution in a round (75ms)
+    ✔ settle cannot run early or twice for the same round (121ms)
+    ✔ no payment after deadline + grace, and a member who left before their payout cannot pay again (66ms)
+    ✔ collateral cannot be withdrawn before the end (55ms)
+    ✔ a short-changing token is rejected at accept
+    ✔ join window ends unfilled: anyone cancels, every deposit comes back (57ms)
+    ✔ the organizer has no special powers (83ms)
+
+  SavingsCircle — v3 review fixes
+    ✔ oldest first: money freed in round 3 repays B before C (this round's recipient) draws on it (229ms)
+    ✔ netting: a recipient who was shorted and then stops paying is not repaid ahead of honest members (204ms)
+    ✔ catch-up: A misses round 2 after payout, then pays again; collateral is drawn only once (279ms)
+    ✔ service fee: 0.5% of each pot goes to the treasury (307ms)
+    ✔ tokens sent straight to the contract can be swept into the reserve and end up with honest members (265ms)
+
+  CircleFactory
+    ✔ creates a listed circle; invited members are only indexed once they accept (43ms)
+    ✔ only its own circles can write; bad setups, tiny amounts, short rounds and control characters are rejected (53ms)
+    ✔ a production factory (1-day rounds) refuses the 1-second trap circle
+    ✔ a factory with a minimum cover refuses circles below it (no member can profit from walking away)
+    ✔ paging is newest first and never overflows on a huge limit
+
+  SavingsCircle — v4 adversarial cases (second review)
+    ✔ paid short, then misses, then catches up: back in good standing, still repaid what it is owed, collateral returned (265ms)
+    ✔ catch-up after collateral ran out: the uncovered share goes to the reserve and repays whoever was shorted (233ms)
+    ✔ the factory records four outcomes and volume, only via recordCircle after the circle is finished (137ms)
+    ✔ someone who is not behind cannot use catchUp (69ms)
+    ✔ penalty is capped by what the leaver has in: at 20% cover the last seat leaving at once forfeits its 20 collateral (267ms)
+    ✔ tokens sent during joining: swept to the reserve, and shared equally if the circle is cancelled (63ms)
+    ✔ tokens sent after the last round and after finishing are never stranded (292ms)
+    ✔ two members stop after their turns: losses fall only on the later recipients, and every token is accounted for (206ms)
+    ✔ three members stop after their turns at 20% cover: reserve runs dry, no collateral or claim is counted twice (208ms)
+    ✔ shorted member with collateral left who stops: what they're owed is netted, the rest refunded last (303ms)
+
+  v6 — timing attacks
+    ✔ early settle waits for a member who is behind but still allowed to pay (GPT critical 1, Fable L2) (161ms)
+    ✔ finalize waits for the cure window when someone is behind; they can catch up in it (GPT critical 2, Fable M2) (263ms)
+    ✔ with nobody behind, finalize needs no wait (268ms)
+    ✔ fixed schedule: an early settle does not pull the next deadline forward (Fable L4) (91ms)
+    ✔ catching up while a round is open also pays that round, so the member cannot re-default (Fable L1) (178ms)
+    ✔ catch-up after the current payment window expires but before settlement pays that round (156ms)
+    ✔ insufficient catch-up funds cannot partially restore status or collateral (137ms)
+
+  v6 — tokens and transfers
+    ✔ cross-function reentrancy: a token calling sweepSurplus() from inside a withdrawal is blocked (GPT 3) (68ms)
+    ✔ a blocked address can withdraw to another address (Fable L6) (64ms)
+    ✔ a token that skims outgoing transfers is refused at withdrawal (GPT 9) (67ms)
+    ✔ a token address with no contract code is rejected (GPT 8)
+
+  v6 — input bounds and rounding
+    ✔ publishes exact immutable seat terms for the member review flow
+    ✔ rejects zero, huge and out-of-range schedules and amounts (Fable H1/H2, GPT 10) (66ms)
+    ✔ collateral rounds up: the smallest contribution at 20% cover still locks something (GPT 11)
+    ✔ leftover tokens are shared one unit at a time, not all to the first member (GPT 11)
+
+  v6 — money rules
+    ✔ leftover collateral of a member whose misses were all covered goes back to them, not to others' debts (Fable M1) (235ms)
+    ✔ leave() before the start returns the collateral; the seat can be taken again (Fable L5) (38ms)
+    ✔ the service fee also applies to pot money repaid later (Fable L3) (242ms)
+    ✔ risk view reports a claim shortfall when the reserve can't cover what is already owed (GPT 4) (83ms)
+
+  v6 — random action ordering
+    ✔ stray transfers, sweeps, premature settle/finalize attempts and catch-ups never break the ledgers (10643ms)
+
+  v9.2 — collateral held back from the pot
+    ✔ joining costs at most one share (the smaller of the seat's collateral and one share); upfront mode is unchanged (123ms)
+    ✔ at the payout, the pot tops collateral up to the full amount and the rest is paid out (107ms)
+    ✔ emits CollateralHeldFromPot; seats whose collateral is at most one share lock it all and have nothing held (185ms)
+    ✔ a short payout at 20% cover: a seat whose collateral is under one share locked it all and has nothing held (132ms)
+    ✔ at 100% cover a member who walks away after the pot gains nothing and nobody loses (1125ms)
+    ✔ leaving before the start returns the bond; a cancelled circle returns every bond (52ms)
+    ✔ a catch-up with too little approved reverts and changes nothing (118ms)
+
+  v9.2 — factory rules
+    ✔ rules() returns every creation rule and the interface version
+    ✔ enforces the minimum cover in both collateral modes and passes the mode to the circle (62ms)
+    ✔ the factory's own circles are the only ones the app trusts; a circle deployed directly has no factory record (41ms)
+
+  v9.2.1 — collateral restoration when old entitlements are repaid
+    ✔ A + B: a short payout leaves collateral below the seat's amount; the later repayment restores it to exactly that amount (408ms)
+    ✔ C: repaid in two parts (a catch-up, then a settle), collateral is topped up step by step to exactly the seat's amount (634ms)
+    ✔ D: the same scenarios in upfront mode keep their v9.2 behaviour (no holds, full collateral from the start) (915ms)
+    ✔ E: the last seat never has collateral held; 0% cover never holds anything, even with short payouts and repayments (747ms)
+    ✔ nothing is held once a member has no scheduled payment left (last round already paid) (221ms)
+
+  v9.2.2 — rule R3 covers original payouts
+    ✔ every original payout and every repayment goes through the R3 accounting check (1165ms)
+
+  v9.2.1 — circle deployer
+    ✔ the factory creates its own deployer, which only the factory can use
+    ✔ circles created through the factory are registered and point back to it
+    ✔ runtime bytecode of every deployable contract stays at least 4 KB under the 24,576-byte limit
+
+  Simulator parity with the contract (state after every step)
+    ✔ normal completion (upfront collateral) (530ms)
+    ✔ one member leaves before their payout (upfront collateral) (564ms)
+    ✔ one member stops right after their payout (upfront collateral) (623ms)
+    ✔ several members stop in different rounds (upfront collateral) (736ms)
+    ✔ several members stop in the same round (upfront collateral) (605ms)
+    ✔ catch-up before settlement (upfront collateral) (550ms)
+    ✔ catch-up after the deadline, before settlement (upfront collateral) (576ms)
+    ✔ reserve exhausted (0% cover, early seats walk) (upfront collateral) (719ms)
+    ✔ finalize with unpaid entitlements (upfront collateral) (541ms)
+    ✔ catch-up in the final cure window (upfront collateral) (559ms)
+    ✔ several members catch up (upfront collateral) (851ms)
+    ✔ everyone stops after their payout (upfront collateral) (330ms)
+    ✔ 12 members, 100% cover, seat 1 walks (upfront collateral) (2491ms)
+    ✔ 2 members, 0% cover (upfront collateral) (246ms)
+    ✔ short payout, later repayment tops collateral up (upfront collateral) (430ms)
+    ✔ short payout, repaid in two parts (catch-up, then settle) (upfront collateral) (511ms)
+    ✔ normal completion (collateral from pot) (505ms)
+    ✔ one member leaves before their payout (collateral from pot) (534ms)
+    ✔ one member stops right after their payout (collateral from pot) (714ms)
+    ✔ several members stop in different rounds (collateral from pot) (757ms)
+    ✔ several members stop in the same round (collateral from pot) (869ms)
+    ✔ catch-up before settlement (collateral from pot) (583ms)
+    ✔ catch-up after the deadline, before settlement (collateral from pot) (399ms)
+    ✔ reserve exhausted (0% cover, early seats walk) (collateral from pot) (568ms)
+    ✔ finalize with unpaid entitlements (collateral from pot) (451ms)
+    ✔ catch-up in the final cure window (collateral from pot) (566ms)
+    ✔ several members catch up (collateral from pot) (742ms)
+    ✔ everyone stops after their payout (collateral from pot) (315ms)
+    ✔ 12 members, 100% cover, seat 1 walks (collateral from pot) (1830ms)
+    ✔ 2 members, 0% cover (collateral from pot) (157ms)
+    ✔ short payout, later repayment tops collateral up (collateral from pot) (417ms)
+    ✔ short payout, repaid in two parts (catch-up, then settle) (collateral from pot) (560ms)
+    ✔ token precision: 1 base unit, odd small amounts and the maximum contribution (15767ms)
+    ✔ random scenarios (160): sizes 2-12, every cover, both collateral modes, fees, defaults, catch-ups (115111ms)
+
+
+  123 passing (4m)
+  6 pending
+
+
+real	3m48.864s
+user	3m2.453s
+sys	0m38.772s
+exit 0

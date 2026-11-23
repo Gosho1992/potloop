@@ -1,0 +1,66 @@
+{
+ "part": "twelve",
+ "checks": [
+  {
+   "name": "12 members, 0% cover, from the pot: created on the real factory (circle #8)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "12 members, 0% cover, from the pot: independent ledger equals the QUSDC balance after every step",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "12 members, 0% cover, from the pot: circle ends holding 0 QUSDC",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "12 members, 0% cover, from the pot: members' losses equal the treasury's fee (no QUSDC created or lost)",
+   "ok": true,
+   "detail": "fee 0.0072 QUSDC"
+  },
+  {
+   "name": "12 members, 0% cover, from the pot: results recorded",
+   "ok": true,
+   "detail": "outcomes 0,0,0,0,0,0,0,0,0,0,0,0"
+  }
+ ],
+ "notes": [],
+ "chainId": 1990,
+ "forkBlock": 12112869,
+ "circle": {
+  "label": "12 members, 0% cover, from the pot",
+  "circle": "0xcf2f8b769447E15006afaEBBd9d1263669B53c1c",
+  "nets": [
+   "-600",
+   "-600",
+   "-600",
+   "-600",
+   "-600",
+   "-600",
+   "-600",
+   "-600",
+   "-600",
+   "-600",
+   "-600",
+   "-600"
+  ],
+  "fee": "7200",
+  "outcomes": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ }
+}

@@ -1,0 +1,18 @@
+{
+  "deployFactory": "5575127",
+  "scenario-1": "5419266",
+  "scenario-1-transactions": "27",
+  "scenario-1-qusdc-peak": "300000",
+  "scenario-2": "8297445",
+  "scenario-2-transactions": "67",
+  "scenario-2-qusdc-peak": "950000",
+  "scenario-3": "13453900",
+  "scenario-3-transactions": "90",
+  "scenario-3-qusdc-peak": "650000",
+  "scenario-4": "10131152",
+  "scenario-4-transactions": "89",
+  "scenario-4-qusdc-peak": "1362000",
+  "scenario-5": "12357460",
+  "scenario-5-transactions": "123",
+  "scenario-5-qusdc-peak": "2100000"
+}

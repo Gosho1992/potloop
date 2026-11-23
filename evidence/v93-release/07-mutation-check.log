@@ -1,0 +1,17 @@
+CAUGHT    late fee 3% instead of 2%  -> catch-up before settlement / upfront collateral: step 6 (contributed, round 4): expected {
+CAUGHT    collateral rounds down instead of up  -> precision 1 / false: step 0 (contributed, round 1): expected {
+CAUGHT    leaving early costs half a share  -> one member leaves before their payout / upfront collateral: step 3 (settle, round 3): expected {
+CAUGHT    service fee rounds up  -> precision 7 / false: step 1 (settle, round 2): expected {
+CAUGHT    held-from-pot target is the next seat's collateral  -> normal completion / collateral from pot: step 1 (settle, round 2): expected {
+CAUGHT    held-from-pot target set by the round the money arrives in (the v9.2 rule)  -> short payout, later repayment tops collateral up / collateral from pot: step 5 (settle, round 4): expected {
+CAUGHT    newest debts repaid first  -> run 9: n=12 k=4000 c=132000000 fee=0 mode=true stopAt=0,0,12,0,0,0,8,0,0,12,0,7 catchUpAt=0,0,0,0,0,0,11,0,0,0
+CAUGHT    no netting at finalize  -> several members stop in different rounds / upfront collateral: step 12 (finalize, round 6): expected {
+CAUGHT    collateral pays everything at once  -> several members stop in different rounds / upfront collateral: step 3 (settle, round 3): expected {
+CAUGHT    catch-up skips an expired unsettled round  -> catch-up before settlement / upfront collateral: catch-up costs: expected [
+CAUGHT    leftover reserve loses its remainder unit  -> several members catch up / upfront collateral: simulator conserves money: expected false to equal true
+CAUGHT    catch-up sends only half of the uncovered part to the reserve  -> catch-up before settlement / upfront collateral: simulator conserves money: expected false to equal true
+CAUGHT    contract AND simulator: target set by the round the money arrives in (the v9.2 rule)  -> short payout, later repayment tops collateral up / collateral from pot settle r4: R2 seat 2 collateral (target 300000000
+CAUGHT    contract AND simulator: repayments never top collateral up  -> short payout, later repayment tops collateral up / collateral from pot settle r4: R2 seat 2 collateral (target 300000000
+CAUGHT    contract AND simulator: service fee rounds up (hits every original payout)  -> precision 7 / false settle r2: R3 FeeCharged events = fees computed from the credits: expected 1 to equal 0.
+
+15/15 mutations caught
