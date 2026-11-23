@@ -540,12 +540,12 @@ function downloadStatement(circle, history, who, money) {
   const esc = (x) => `"${String(x).replace(/"/g, '""')}"`;
   const rows = [["time", "event", "details", "transaction"]];
   for (const e of [...history].reverse()) {
-    rows.push([e.time ? new Date(e.time * 1000).toISOString() : "", e.name, eventText(e, who, money), e.tx]);
+    rows.push([e.time ? new Date(e.time * 1000).toISOString() : "", e.name, eventText(e, who, money, circle), e.tx]);
   }
   download(new Blob([rows.map((r) => r.map(esc).join(",")).join("\n")], { type: "text/csv" }), `potloop-${circle.address.slice(0, 8)}-statement.csv`);
 }
 
-function eventText(e, who, money) {
+function eventText(e, who, money, circle) {
   const a = e.args;
   switch (e.name) {
     case "Accepted": return `${who(a.member)} accepted seat ${a.slot} and locked ${money(a.collateral)}.`;
@@ -661,7 +661,7 @@ function RiskAndHistory({ circle, history, who, money, v }) {
           <ol className="history">
             {groupPayments(history).map((e) => (
               <li key={`${e.tx}-${e.idx}`} className={`ev ev-${e.name}`}>
-                <span>{eventText(e, who, money)}</span>
+                <span>{eventText(e, who, money, circle)}</span>
                 <a href={`${config.explorer}/tx/${e.tx}`} target="_blank" rel="noreferrer">
                   {e.time ? new Date(e.time * 1000).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" }) : "transaction"}
                 </a>
