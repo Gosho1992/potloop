@@ -172,7 +172,8 @@ export async function loadCircle(address, account) {
 /** The circle's own event log, newest first. Fetched in bounded block ranges and cached, so each
  *  refresh only asks for blocks it hasn't seen. */
 const historyCache = new Map(); // address -> { next, events, times }
-const CHUNK = 20000;
+// QIE's public RPC answers eth_getLogs for at most 10,000 blocks at a time
+const CHUNK = 5000;
 
 async function limitedAll(items, limit, fn) {
   const out = [];
@@ -359,11 +360,18 @@ export async function reconnectWallet() {
   return { eip, account, walletName: found.name };
 }
 
-/** Signer for a write, after checking the wallet is still on the expected network. */
+/**
+ * Signer for a write, after checking the wallet is still on the expected network.
+ * Gas is estimated on the app's own QIE RPC, not the wallet's: a wallet's node can fail an
+ * estimate with no reason ("missing revert data") even when the transaction is fine, and a real
+ * revert then comes back with its reason, which explainError can put in words.
+ */
 export async function signerFrom(eip) {
   const id = parseInt(await eip.request({ method: "eth_chainId" }), 16);
   if (id !== config.chainId) throw new Error(`Your wallet is on chain ${id}. Switch it to ${chainParams.chainName} (chain ${config.chainId}) first.`);
-  return new BrowserProvider(eip).getSigner();
+  const wallet = new BrowserProvider(eip);
+  wallet.estimateGas = async (tx) => ((await readProvider.estimateGas(tx)) * 125n) / 100n;
+  return wallet.getSigner();
 }
 
 export function tokenWith(runner, address) {

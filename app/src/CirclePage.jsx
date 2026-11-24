@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { formatUnits } from "ethers";
 import { config, isMainnet, circleLink } from "./config";
-import { STATUS, circleAt, loadCircle, loadHistory, signerFrom, tokenWith } from "./chain";
+import { STATUS, circleAt, loadCircle, loadHistory, signerFrom, tokenWith, readProvider } from "./chain";
 import { displayName, resolveNames, shortAddr } from "./names";
 import { explainError, plural, clock, every, amount, TxLink, FundsNote, Record, calendarFile, download } from "./ui";
 import { factoryAt } from "./chain";
@@ -88,7 +88,7 @@ export default function CirclePage({ address, wallet, onConnect, names, setNames
   // ------------------------------------------------------------- actions
   const approveIfNeeded = async (signer, amount, onTx) => {
     const t = tokenWith(signer, circle.token.address);
-    const allowance = await t.allowance(await signer.getAddress(), address);
+    const allowance = await tokenWith(readProvider, circle.token.address).allowance(await signer.getAddress(), address);
     if (allowance < amount) {
       const tx = await t.approve(address, amount);
       onTx(tx);

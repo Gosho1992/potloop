@@ -42,6 +42,7 @@ export function explainError(e) {
   const name = Object.keys(ERROR_TEXT).find((k) => String(e?.message || "").includes(k));
   if (name) return ERROR_TEXT[name];
   if (String(e?.message || "").includes("insufficient")) return "Not enough balance in this wallet (QUSDC, or QIE for gas).";
+  if (e?.code === "CALL_EXCEPTION" && !data) return "Your wallet couldn't prepare this transaction. Nothing was sent. Check you have a little QIE for fees, then try again.";
   return e?.shortMessage || e?.message || "Something went wrong.";
 }
 
