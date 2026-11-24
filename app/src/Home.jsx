@@ -130,6 +130,7 @@ function Card({ c, money }) {
     <li>
       <a className="card" href={`#/c/${c.address}`}>
         <span className="card-name">{c.name || "Unnamed circle"}</span>
+        {c.test && <span className="card-test">Test circle</span>}
         <span>{c.size} members, {money(c.contribution)} per round, {c.coverageBps / 100}% cover</span>
         <span className={`card-status ${c.phase === "Open" ? "open" : ""}`}>
           {status(c)}

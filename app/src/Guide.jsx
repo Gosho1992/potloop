@@ -17,13 +17,13 @@ export default function Guide() {
         <ol>
           {showExample && (
             <li>
-              <a href={`#/c/${EXAMPLE_CIRCLE}`}>Open a real circle on QIE mainnet</a>. Seat 1 took the pot, missed two rounds, then caught up. Open the <strong>Risk and history</strong> tab to see every step, each with its transaction.
+              <a href={`#/c/${EXAMPLE_CIRCLE}`}>Open a test circle that ran on QIE mainnet with real QUSDC</a>. Seat 1 took the pot, missed two rounds, then caught up. Open the <strong>Risk and history</strong> tab to see every step, each with its transaction.
             </li>
           )}
           <li>
             <a href="#/new">Start a circle</a> and paste any wallet addresses. Nothing is sent until you connect a wallet and confirm.
           </li>
-          <li>Change the <strong>cover</strong> and scroll to <strong>What if someone stops paying?</strong> The table shows who would lose money, and how much, before anyone signs.</li>
+          <li>Scroll to <strong>What if someone stops paying?</strong> Pick who stops and when: the table shows what happens to every member before anyone signs.</li>
         </ol>
       </div>
 
@@ -40,7 +40,7 @@ export default function Guide() {
           <ol className="steps">
             <li><strong>Start a circle.</strong> Give it a name and add members in payout order: seat 1 gets the first pot.</li>
             <li><strong>Set the amount and how often</strong> everyone pays, for example 10 QUSDC every 30 days.</li>
-            <li><strong>Choose the cover.</strong> 100% means a member who stops paying after their turn is paid for by their own collateral, so nobody else loses. Lower cover is only for groups that already trust each other; the app shows the exact amount at risk.</li>
+            <li><strong>Cover is 100%.</strong> A member who stops paying after their turn is paid for by their own collateral, so nobody else loses. PotLoop's live factory requires it.</li>
             <li><strong>Create it and share the invite link</strong> with each member (WhatsApp is fine). The circle starts when every seat is taken.</li>
           </ol>
         </div>

@@ -233,7 +233,7 @@ export default function CirclePage({ address, wallet, onConnect, names, setNames
   const myNeed = v.canAccept ? circle.me.member.collateralRequired : v.canCatchUp ? circle.me.member.catchUpTotal : v.canPay ? circle.contribution : 0n;
   const recordResults = () =>
     run("Record results", "Everyone's track record is updated.", async (signer, onTx) => {
-      const tx = await factoryAt(signer).recordCircle(circle.address);
+      const tx = await factoryAt(signer, circle.factory).recordCircle(circle.address);
       onTx(tx);
       await tx.wait();
       return tx;
@@ -255,6 +255,11 @@ export default function CirclePage({ address, wallet, onConnect, names, setNames
         <p className="danger" role="alert">
           This address is not a circle created by PotLoop's official factory, or it uses a different token. Don't approve or send anything to it.
           Actions are turned off.
+        </p>
+      )}
+      {circle.genuine && circle.testFactory && (
+        <p className="notice test-note">
+          <strong>Test circle.</strong> Created on PotLoop's testing factory, which allows rounds as short as one minute, so whole circles could be run on QIE mainnet in minutes. New circles use the production factory (rounds of at least one day, 100% cover).
         </p>
       )}
       <section className="hero">

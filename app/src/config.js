@@ -18,6 +18,12 @@ export const config = {
   chainId: Number(pick("chain", "VITE_CHAIN_ID", "1990")),
   explorer: pick("explorer", "VITE_EXPLORER", "https://mainnet.qie.digital"),
   fromBlock: Number(pick("from", "VITE_FROM_BLOCK", "0")),
+  // earlier factories whose circles still open here, marked as test circles: "0xAddr@block,..."
+  earlierFactories: (env.VITE_EARLIER_FACTORIES || "")
+    .split(",")
+    .map((s) => s.trim().split("@"))
+    .filter(([a]) => /^0x[0-9a-fA-F]{40}$/.test(a || ""))
+    .map(([address, block]) => ({ address, fromBlock: Number(block || 0) })),
   dexUrl: pick("dex", "VITE_DEX_URL", "https://www.dex.qie.digital/#/swap"),
   // optional display names for addresses without a .qie name, e.g. labels=0xabc:Thandi,0xdef:Sipho
   labels: Object.fromEntries(
@@ -30,6 +36,14 @@ export const config = {
 };
 
 export const isMainnet = config.chainId === 1990;
+
+/** Every factory the app trusts: the current one first (new circles), then earlier ones. */
+export const factories = [
+  ...(config.factory ? [{ address: config.factory, fromBlock: config.fromBlock || 0, current: true }] : []),
+  ...config.earlierFactories
+    .filter((f) => f.address.toLowerCase() !== (config.factory || "").toLowerCase())
+    .map((f) => ({ ...f, current: false })),
+];
 
 export const chainParams = {
   chainId: "0x" + config.chainId.toString(16),

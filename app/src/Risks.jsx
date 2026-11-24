@@ -1,4 +1,4 @@
-import { config, QUSDC_MAINNET } from "./config";
+import { config, factories, QUSDC_MAINNET } from "./config";
 
 export default function Risks() {
   return (
@@ -29,7 +29,12 @@ export default function Risks() {
         <li>PotLoop keeps a small fee from pot money paid out (shown on each circle, at most 1%).</li>
         <li>Only open circles from links that show this site's address. The app checks every circle against PotLoop's official factory and refuses anything else.</li>
       </ul>
-      <p className="muted">Network: QIE chain {config.chainId}. Factory: {config.factory || "not set"}.</p>
+      <p className="muted">
+        Network: QIE chain {config.chainId}. Factory for new circles: {config.factory || "not set"}.
+        {factories.filter((f) => !f.current).map((f) => (
+          <span key={f.address}> Earlier testing factory (its circles are marked as test circles): {f.address}.</span>
+        ))}
+      </p>
       <p><a className="button" href="#/">Back</a></p>
     </section>
   );

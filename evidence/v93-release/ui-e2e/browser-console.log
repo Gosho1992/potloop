@@ -5,7 +5,6 @@
     at Jn.getRpcError (http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:271828)
     at http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:268977
 [error] Failed to load resource: net::ERR_FAILED
-[error] Failed to load resource: net::ERR_FAILED
 [error] TypeError: Failed to fetch
     at fo.t (http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:10333)
     at fo.Vs (http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:17217)

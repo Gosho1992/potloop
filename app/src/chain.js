@@ -1,7 +1,7 @@
 import { BrowserProvider, Contract, JsonRpcProvider } from "ethers";
 import abi from "./circleAbi.json";
 import factoryAbi from "./factoryAbi.json";
-import { config, chainParams } from "./config";
+import { config, factories, chainParams } from "./config";
 
 const erc20Abi = [
   "function decimals() view returns (uint8)",
@@ -29,20 +29,39 @@ export function circleAt(address, runner) {
   return new Contract(address, abi, runner);
 }
 
-export function factoryAt(runner) {
-  return config.factory ? new Contract(config.factory, factoryAbi, runner) : null;
+export function factoryAt(runner, address = config.factory) {
+  return address ? new Contract(address, factoryAbi, runner) : null;
+}
+
+const originCache = new Map(); // circle address -> factory entry
+/**
+ * Which trusted factory created this circle, or null if none did. A failed read throws (a
+ * network error must never make a genuine circle look fake).
+ */
+export async function factoryOf(address) {
+  const key = address.toLowerCase();
+  if (originCache.has(key)) return originCache.get(key);
+  for (const f of factories) {
+    if (await factoryAt(readProvider, f.address).isCircle(address)) {
+      originCache.set(key, f);
+      return f;
+    }
+  }
+  return null;
 }
 
 /** Reads everything the screens need, straight from the contract. */
 export async function loadCircle(address, account) {
   const c = circleAt(address, readProvider);
-  const factory = factoryAt(readProvider);
-  // a circle is only "genuine" if our pinned factory created it and it uses the factory's token
-  // a failed read must surface as a network error, never as "not genuine" (that would wrongly
-  // tell members a real circle is a fake)
-  const [isCircle, factoryToken] = factory ? await Promise.all([factory.isCircle(address), factory.token()]) : [false, null];
-  // never read (or show actions for) an address the official factory didn't create
-  if (factory && !isCircle) return { notGenuine: true, address };
+  // a circle is only "genuine" if one of PotLoop's trusted factories created it and it uses that
+  // factory's token. A failed read must surface as a network error, never as "not genuine"
+  // (that would wrongly tell members a real circle is a fake)
+  const origin = factories.length ? await factoryOf(address) : null;
+  const factory = origin ? factoryAt(readProvider, origin.address) : null;
+  const isCircle = Boolean(origin);
+  // never read (or show actions for) an address no trusted factory created
+  if (factories.length && !isCircle) return { notGenuine: true, address };
+  const factoryToken = factory ? await factory.token() : null;
   const [tokenAddr, contribution, coverageBps, roundLength, grace, joinDeadline, size, organizer, feeBps, name, finalizeAfter, fromPayout, recorded] = await Promise.all([
     c.token(), c.contribution(), c.coverageBps(), c.roundLength(), c.grace(), c.joinDeadline(), c.size(), c.organizer(),
     c.feeBps().catch(() => 0n),
@@ -136,6 +155,8 @@ export async function loadCircle(address, account) {
     address,
     name,
     genuine,
+    factory: origin?.address || null,
+    testFactory: Boolean(origin && !origin.current),
     finalizeAfter: Number(finalizeAfter),
     recorded,
     feeBps: Number(feeBps),
@@ -184,7 +205,9 @@ async function limitedAll(items, limit, fn) {
 export async function loadHistory(address) {
   const c = circleAt(address, readProvider);
   const key = address.toLowerCase();
-  const entry = historyCache.get(key) || { next: config.fromBlock || 0, events: [], times: new Map() };
+  const origin = await factoryOf(address).catch(() => null);
+  const start = origin ? origin.fromBlock : Math.min(...factories.map((f) => f.fromBlock), config.fromBlock || 0);
+  const entry = historyCache.get(key) || { next: start || 0, events: [], times: new Map() };
   try {
     const latest = await readProvider.getBlockNumber();
     for (let from = entry.next; from <= latest; from += CHUNK) {
@@ -219,14 +242,14 @@ export const toRecord = (h) => ({
 });
 
 /** Invitations: Invited events naming this account (bounded, newest first). Only our factory's. */
-async function loadInvites(f, account) {
+async function loadInvites(f, account, fromBlock = config.fromBlock || 0) {
   const latest = await readProvider.getBlockNumber();
   const out = [];
-  for (let to = latest; to >= (config.fromBlock || 0) && out.length < 30; to -= CHUNK) {
-    const from = Math.max(to - CHUNK + 1, config.fromBlock || 0);
+  for (let to = latest; to >= fromBlock && out.length < 30; to -= CHUNK) {
+    const from = Math.max(to - CHUNK + 1, fromBlock);
     const logs = await f.queryFilter(f.filters.Invited(null, account), from, to);
     for (const l of logs.reverse()) out.push(l.args.circle);
-    if (from === (config.fromBlock || 0)) break;
+    if (from === fromBlock) break;
   }
   return [...new Set(out)].slice(0, 30);
 }
@@ -235,12 +258,23 @@ async function loadInvites(f, account) {
 export async function loadCircles(account) {
   const f = factoryAt(readProvider);
   if (!f) return null;
-  const [page, joined, invites, tokenAddr] = await Promise.all([
-    f.circlesPage(0, 40),
-    account ? f.joinedPage(account, 0, 40) : [],
-    account ? loadInvites(f, account).catch(() => []) : [],
-    f.token(),
-  ]);
+  // circles from every trusted factory; each remembers which one created it
+  const per = await Promise.all(
+    factories.map(async (entry) => {
+      const fx = factoryAt(readProvider, entry.address);
+      const [page, joined, invites] = await Promise.all([
+        fx.circlesPage(0, 40),
+        account ? fx.joinedPage(account, 0, 40) : [],
+        account ? loadInvites(fx, account, entry.fromBlock).catch(() => []) : [],
+      ]);
+      for (const a of [...page, ...joined, ...invites]) originCache.set(a.toLowerCase(), entry);
+      return { page: [...page], joined: [...joined], invites };
+    })
+  );
+  const page = per.flatMap((x) => x.page);
+  const joined = per.flatMap((x) => x.joined);
+  const invites = per.flatMap((x) => x.invites);
+  const tokenAddr = await f.token();
   const token = new Contract(tokenAddr, erc20Abi, readProvider);
   const [symbol, decimals] = await Promise.all([token.symbol(), token.decimals()]);
   const joinedSet = new Set(joined.map((a) => a.toLowerCase()));
@@ -249,8 +283,9 @@ export async function loadCircles(account) {
   const list = await limitedAll(all, 8, async (lower) => {
     const address = [...joined, ...invites, ...page].find((x) => x.toLowerCase() === lower);
     const c = circleAt(address, readProvider);
+    const origin = originCache.get(lower);
     const [name, phase, size, contribution, coverageBps, currentRound, allRoundsSettled, accepted] = await Promise.all([
-      f.nameOf(address), c.phase(), c.size(), c.contribution(), c.coverageBps(), c.currentRound(), c.allRoundsSettled(), c.acceptedCount(),
+      factoryAt(readProvider, origin.address).nameOf(address), c.phase(), c.size(), c.contribution(), c.coverageBps(), c.currentRound(), c.allRoundsSettled(), c.acceptedCount(),
     ]);
     let slot = 0;
     let myAccepted = false;
@@ -259,7 +294,7 @@ export async function loadCircles(account) {
       if (slot > 0) myAccepted = (await c.member(slot - 1)).accepted;
     }
     return {
-      address, name, phase: PHASES[Number(phase)], size: Number(size), contribution, coverageBps: Number(coverageBps),
+      address, name, test: !origin.current, phase: PHASES[Number(phase)], size: Number(size), contribution, coverageBps: Number(coverageBps),
       currentRound: Number(currentRound), allRoundsSettled, accepted: Number(accepted), slot, myAccepted,
     };
   });
@@ -301,10 +336,17 @@ export async function loadFactoryRules() {
   };
 }
 
+/** A wallet's track record, added up over every trusted factory. */
 export async function loadRecord(address) {
-  const f = factoryAt(readProvider);
-  if (!f) return null;
-  return toRecord(await f.history(address));
+  if (!factories.length) return null;
+  const parts = await Promise.all(factories.map((f) => factoryAt(readProvider, f.address).history(address)));
+  return parts.map(toRecord).reduce((a, b) => ({
+    completed: a.completed + b.completed,
+    caughtUp: a.caughtUp + b.caughtUp,
+    leftEarly: a.leftEarly + b.leftEarly,
+    walkedAway: a.walkedAway + b.walkedAway,
+    volume: a.volume + b.volume,
+  }));
 }
 
 // ---------------------------------------------------------------- wallet

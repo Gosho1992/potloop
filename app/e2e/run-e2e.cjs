@@ -80,7 +80,7 @@ async function main() {
   const [A, B, Cc] = dep.members; // seats 1, 2, 3 in the circle the UI creates
 
   // 2. production build of the app with the local factory baked in, served by vite preview
-  const buildEnv = { ...env, VITE_FACTORY_ADDRESS: dep.factory, VITE_RPC_URL: RPC, VITE_CHAIN_ID: String(dep.chainId), VITE_FROM_BLOCK: "0", VITE_EXPLORER: "", VITE_APP_NAME: "PotLoop" };
+  const buildEnv = { ...env, VITE_FACTORY_ADDRESS: dep.factory, VITE_RPC_URL: RPC, VITE_CHAIN_ID: String(dep.chainId), VITE_FROM_BLOCK: "0", VITE_EARLIER_FACTORIES: `${dep.earlierFactory}@0`, VITE_EXPLORER: "", VITE_APP_NAME: "PotLoop" };
   execFileSync("npx", ["vite", "build", "--outDir", "e2e-dist", "--emptyOutDir"], { cwd: APP, env: buildEnv, stdio: "pipe" });
   await start("npx", ["vite", "preview", "--outDir", "e2e-dist", "--port", String(PORT), "--strictPort", "--host", "127.0.0.1"], { cwd: APP, env: buildEnv }, String(PORT));
 
@@ -417,6 +417,27 @@ async function main() {
     await text(page, /^How to use PotLoop$/);
     must(crashes.length === 0, `page error: ${crashes[0]}`);
     return `${hrefs.length} links checked; header and home buttons open the guide`;
+  });
+
+  await tcase("E2E-26", "Two factories: the earlier factory's circles open as test circles, new circles go to the current factory", page, async () => {
+    const crashes = [];
+    page.on("pageerror", (e) => crashes.push(String(e.message || e)));
+    await page.goto(BASE + "#/");
+    const card = await visible(page.locator("a.card", { hasText: "Earlier test circle" }));
+    must((await card.locator(".card-test").innerText()) === "Test circle", "earlier circle not marked as a test circle");
+    const current = page.locator("a.card", { hasText: "UI acceptance circle" }).first();
+    must((await current.count()) === 1 && (await current.locator(".card-test").count()) === 0, "current-factory circle missing or wrongly marked");
+    await card.click();
+    await text(page, /^Test circle\.$/);
+    must((await page.getByRole("alert").filter({ hasText: /not a circle created by PotLoop/ }).count()) === 0, "earlier circle called not genuine");
+    await visible(page.getByRole("tab", { name: "Members", exact: true }));
+    await page.goto(BASE + "#/c/" + circle);
+    await text(page, /This circle is finished/);
+    must((await page.locator(".test-note").count()) === 0, "current-factory circle shown as a test circle");
+    const [isOld] = await call(dep.factory, F, "isCircle", [dep.earlierCircle]);
+    must(!isOld, "earlier circle should not be in the current factory");
+    must(crashes.length === 0, `page error: ${crashes[0]}`);
+    return `earlier circle ${dep.earlierCircle.slice(0, 10)}… opens as a test circle; the E2E circle from the current factory doesn't`;
   });
 
   await tcase("E2E-25", "A wallet that already allowed the site reconnects on reload without a prompt; a new one doesn't", page, async () => {
