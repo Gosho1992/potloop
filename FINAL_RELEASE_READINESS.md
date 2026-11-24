@@ -1,5 +1,7 @@
 # PotLoop v9.3: final release readiness
 
+> **Update, 24 Nov 2026.** Done since this assessment: the **production factory** is deployed and source-verified at `0xE1ea943b865F47e984156526add5E07B03893834` (1-day rounds, 6 h grace, 1 QUSDC minimum, 100% cover, no fee, no treasury), from the owner's own QIE Wallet; the app creates new circles there and still opens the 7 test circles, marked as such. `recordCircle` ran on mainnet for S4 ([transaction](https://mainnet.qie.digital/tx/0xedad45665b5dad667e7729867012c74c3fb9c774ed41cd8adccbf8525c28099f)): 331,272 gas, as predicted on the local copy of mainnet (M4 resolved). A person used the real QIE Wallet on mainnet (`REAL_WALLET_TEST.md`; H5 partly resolved). UI acceptance is 26/26. Still open: independent audit (H4), QUSDC issuer risk (H3, disclosed in the app), the rest of the manual wallet checklist, and deleting the exposed key files (C1).
+
 ## Recommendation
 
 **PotLoop is live on QIE mainnet and ready for a hackathon demonstration. Before a controlled external pilot it needs the items under "What a pilot still needs" below; production also needs a multisig treasury.**
@@ -16,14 +18,14 @@
   - The exhaustive suite: all 6 combinations of collateral mode and 0/50/100% cover, 46,656 of 46,656 default patterns passed, every process exiting 0.
   - Slither (13 known, reviewed items).
   - Raw logs and exit codes in `evidence/v93-release/` (`LOCAL_FORK_EDGE_CASE_REPORT.md`).
-- **The real app works end to end.** The production build passed 25/25 browser cases, from connecting a wallet to withdrawing: wrong network, rejected signature, pending transaction, RPC failure, refresh and disconnect. Two app bugs found this way were fixed (`UI_E2E_REPORT.md`).
+- **The real app works end to end.** The production build passed 26/26 browser cases, from connecting a wallet to withdrawing: wrong network, rejected signature, pending transaction, RPC failure, refresh and disconnect. Two app bugs found this way were fixed (`UI_E2E_REPORT.md`).
 - **History recording works**, locally and on a local copy of mainnet against all 7 real circles (34/34), without moving money.
 
 ### What a pilot still needs
 
 Each of these is a blocker, and the pilot needs all of them resolved:
 
-1. **The demo factory cannot serve real users.**
+1. ~~**The demo factory cannot serve real users.**~~ Resolved 24 Nov 2026: production factory `0xE1ea943b865F47e984156526add5E07B03893834` deployed and verified.
    - Its treasury key is exposed and immutable (H1).
    - Its rules allow 60-second rounds and 0% cover (H2).
    - Real users need a new factory (`PRODUCTION_FACTORY_RECOMMENDATION.md`), which needs the owner's approval to deploy.
@@ -96,8 +98,8 @@ Severity: Critical / High / Medium / Low. Status: verified (confirmed true), fix
 
 1. Delete the key files and archives, and ask the reviewer to delete their copy (C1).
 2. ~~Explorer verification~~: done for the factory (M2).
-3. Approve or decline the one-transaction `recordCircle` mainnet test on the S4 circle (M4).
-4. Choose the pilot factory settings (grace 6 h or 12 h; fee 0) and approve its deployment when the other blockers are cleared (H2).
+3. ~~Approve the `recordCircle` mainnet test on S4 (M4)~~: done 24 Nov 2026.
+4. ~~Choose the pilot factory settings and approve its deployment (H2)~~: done 24 Nov 2026 (grace 6 h, fee 0).
 5. Arrange the manual QIE Wallet acceptance (H5) and an independent review (H4).
 
 ## Deliverables of this phase

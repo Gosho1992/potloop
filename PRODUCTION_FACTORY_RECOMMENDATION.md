@@ -1,6 +1,8 @@
 # Production factory: recommendation for approval
 
-**Nothing has been deployed for this.** This document is the proposal; a deployment needs the owner's separate written approval and the approval code that `scripts/mainnet-preflight.js` prints for the exact settings.
+**Deployed 24 Nov 2026** with the pilot settings below (grace 6 h, fee 0, no treasury): factory `0xE1ea943b865F47e984156526add5E07B03893834`, block 12,132,174, [deployment transaction](https://mainnet.qie.digital/tx/0xc8ae6efb0a0124ace60c2d05226b331e4c2b4db61c243c90f6910234c2636ea5), 5,572,073 gas (0.0056 QIE). The owner approved the settings in chat and signed the deployment in their own QIE Wallet (the deploying account is not one of the exposed addresses and gets no power over the factory). The creation code is the same build whose code matched the testing factory byte for byte, and the source is **verified on the QIE explorer**. Rules read back from the chain: QUSDC, treasury 0x0, fee 0, 86,400 s, 21,600 s, 1,000,000 (1 QUSDC), 10,000 (100%), version 92. The app now creates circles there and still opens the testing factory's circles (`VITE_EARLIER_FACTORIES`), marked as test circles, so the migration notes below were handled without a separate demo build.
+
+The proposal as written before the deployment follows.
 
 ## The deployed factory is a demo factory
 

@@ -1,6 +1,6 @@
 # UI acceptance report (automated)
 
-**Result: 25 of 25 cases pass** on the production build of the app, after three app bugs were fixed (two found by this suite, one found on the live app on 23 Nov 2026 and now covered by E2E-23). E2E-24 and E2E-25 (24 Nov 2026) cover the new How it works page and the quiet reconnect. A separate accessibility check with axe-core (WCAG 2 A and AA rules) on the home, guide, risks, create and circle pages, at 1440×900 and at a 390×844 phone size, found no issues, and no page scrolls sideways on the phone. Raw results: `evidence/v93-release/ui-e2e/results.json`, a screenshot per case, and the browser console log.
+**Result: 26 of 26 cases pass** on the production build of the app, after three app bugs were fixed (two found by this suite, one found on the live app on 23 Nov 2026 and now covered by E2E-23). E2E-24 and E2E-25 (24 Nov 2026) cover the new How it works page and the quiet reconnect; E2E-26 covers the app trusting two factories (production and testing). A separate accessibility check with axe-core (WCAG 2 A and AA rules) on the home, guide, risks, create and circle pages, at 1440×900 and at a 390×844 phone size, found no issues, and no page scrolls sideways on the phone. Raw results: `evidence/v93-release/ui-e2e/results.json`, a screenshot per case, and the browser console log.
 
 ## What was tested, and how
 
@@ -43,6 +43,7 @@
 | E2E-22 | URL tries to set factory and RPC | PASS | Ignored by the production build |
 | E2E-23 | Every tab of a finished circle that had a default and a catch-up | PASS | No page errors; 28 history lines, the default and the catch-up described in words, no event shown by its raw name |
 | E2E-24 | How it works page from the header and the home page | PASS | All six sections shown; every in-app link in the guide leads to a real page; no page errors |
+| E2E-26 | Two factories: the test deployment adds an earlier factory with its own circle | PASS | The earlier factory's circle is listed and opens as a genuine "Test circle"; the current factory's circle is not marked; the earlier circle is not in the current factory; no page errors. E2E-21 still refuses a circle from no trusted factory |
 | E2E-25 | Quiet reconnect on reload | PASS | A wallet that already allowed the site, on QIE, reconnects using eth_accounts only (no prompt); a wallet that hasn't, or one on another network, stays disconnected |
 
 ## Bugs found by this suite and fixed (app only; no contract change)
