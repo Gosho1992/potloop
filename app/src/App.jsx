@@ -11,6 +11,7 @@ const CirclePage = lazy(() => import("./CirclePage"));
 const Create = lazy(() => import("./Create"));
 const Risks = lazy(() => import("./Risks"));
 const Guide = lazy(() => import("./Guide"));
+const LaunchFactory = lazy(() => import("./LaunchFactory"));
 
 function parseRoute() {
   const h = window.location.hash.replace(/^#/, "");
@@ -19,6 +20,7 @@ function parseRoute() {
   if (h.startsWith("/new")) return { page: "new" };
   if (h.startsWith("/risks")) return { page: "risks" };
   if (h.startsWith("/guide")) return { page: "guide" };
+  if (h.startsWith("/launch-factory")) return { page: "launch" };
   if (config.circle && !config.factory) return { page: "circle", address: config.circle };
   return { page: "home" };
 }
@@ -100,6 +102,7 @@ export default function App() {
       {route.page === "home" && <Home {...props} />}
       {route.page === "risks" && <Risks />}
       {route.page === "guide" && <Guide />}
+      {route.page === "launch" && <LaunchFactory {...props} />}
       </Suspense>
     </Shell>
   );
