@@ -79,5 +79,5 @@ PotLoop. Your circle. Your turn. Your money. Built on QIE.
 | S4: 5 members, 20% cover; seat 1 missed rounds 2 and 3; collateral paid 0.016; seats 2 and 3 paid short (0.004, 0.02); catch-up in round 4; reserve repaid the older debt first; circle ends at 0 | Circle 0xe7461b15…c804 history on mainnet; `MAINNET_CIRCLES.csv` |
 | Factory source verified | QIE explorer, `contracts/CircleFactory.sol`, verified 23 Nov 2026 |
 | 7 circles, 511 transactions, 510 succeeded, 1 reverted (late payment, 60 s deadline) | `MAINNET_FINANCIAL_RECONCILIATION.md`, `MAINNET_TEST_RESULTS.md` |
-| 46,656/46,656 exhaustive patterns; 15/15 mutations ("every planted bug"); 23/23 browser tests | `LOCAL_FORK_EDGE_CASE_REPORT.md`, `UI_E2E_REPORT.md` |
+| 46,656/46,656 exhaustive patterns; 15/15 mutations ("every planted bug"); 26/26 browser tests | `LOCAL_FORK_EDGE_CASE_REPORT.md`, `UI_E2E_REPORT.md` |
 | Live on mainnet with real QUSDC; own security review (`SECURITY_REVIEW.md`), no independent audit yet | `SECURITY_REVIEW.md`, `FINAL_RELEASE_READINESS.md` |

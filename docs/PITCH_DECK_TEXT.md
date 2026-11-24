@@ -106,7 +106,7 @@ production and testing factories’ source on the QIE explorer
 of 46,656 exhaustive payment patterns pass
 15 / 15
 planted bugs caught; 1,500 random runs
-23 / 23
+26 / 26
 browser tests on the production app
 Speaker notes: The one reverted transaction was a payment that arrived 34 seconds after a 60-second demo deadline; the contract refused it, as it should. Every mainnet run was reconciled from receipts and token transfer logs: each member ended with exactly the simulator’s predicted balance. Locally there are also 142 passing contract tests and 34 history checks on a copy of mainnet. All of it is in the public repo.
 
@@ -116,7 +116,7 @@ Who uses it, and how it earns
 First users
 Organisers of small committees that already trust each other: 3–6 members, 100% cover, short circles.
 Revenue
-A fee on each pot paid out, never on collateral, capped at 1% by the contract. The pilot factory charges 0%; a fee comes with a later factory, once QIE has a multisig for it.
+A fee on each pot paid out, never on collateral, capped at 1% by the contract. The production factory charges 0%; a fee comes with a later factory, once QIE has a multisig for it.
 Growth
 Each circle has an invite link. When a circle finishes, each member’s result can be recorded on chain, so a good payer brings that record to the next group.
 No customers yet. The 90 days after judging: pilot circles, recurring users and pot volume on QIE.

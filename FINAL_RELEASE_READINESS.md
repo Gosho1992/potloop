@@ -99,7 +99,7 @@ Severity: Critical / High / Medium / Low. Status: verified (confirmed true), fix
 1. Delete the key files and archives, and ask the reviewer to delete their copy (C1).
 2. ~~Explorer verification~~: done for the factory (M2).
 3. ~~Approve the `recordCircle` mainnet test on S4 (M4)~~: done 24 Nov 2026.
-4. ~~Choose the pilot factory settings and approve its deployment (H2)~~: done 24 Nov 2026 (grace 6 h, fee 0).
+4. ~~Choose the production factory settings and approve its deployment (H2)~~: done 24 Nov 2026 (grace 6 h, fee 0).
 5. Arrange the manual QIE Wallet acceptance (H5) and an independent review (H4).
 
 ## Deliverables of this phase

@@ -58,4 +58,4 @@
 ## Observations, not changed
 
 - After a page refresh the wallet is not reconnected automatically; the user presses Connect. This is safe and simple. Silent reconnection (`eth_accounts`) would be a feature, so it was not added.
-- The production bundle is larger than 500 kB (Vite warning). It loads fine; code-splitting is an optimisation, not a defect.
+- Bundle size: the app is now code-split (ethers and React in their own chunks, pages lazy-loaded), so the earlier Vite "larger than 500 kB" warning no longer applies.
