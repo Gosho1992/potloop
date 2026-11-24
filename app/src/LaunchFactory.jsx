@@ -43,7 +43,7 @@ export default function LaunchFactory({ wallet, onConnect }) {
   return (
     <section className="create">
       <h1>Deploy the production factory</h1>
-      <p className="sub">Owner only. One transaction from your QIE Wallet, about 0.006 QIE in fees. The settings below are fixed forever once deployed.</p>
+      <p className="sub">Owner only. One transaction from your QIE Wallet, about 0.008 QIE in fees. The settings below are fixed forever once deployed.</p>
       <table className="cover-compare">
         <tbody>
           {SETTINGS.map(([k, v, raw]) => (
@@ -51,7 +51,7 @@ export default function LaunchFactory({ wallet, onConnect }) {
           ))}
         </tbody>
       </table>
-      <p className="muted">Code: CircleFactory, the same build as the verified factory {config.factory}. Creation code {artifact.bytecode.length / 2 - 1} bytes; constructor checked against the ABI {new Interface(artifact.abi).deploy.format()}.</p>
+      <p className="muted">Code: CircleFactory, the same build as the verified factory {config.factory}. Creation code {artifact.bytecode.length / 2 - 1} bytes; constructor checked against the ABI {new Interface(artifact.abi).deploy.format("full")}.</p>
       {!wallet && <button className="primary" onClick={onConnect}>Connect QIE Wallet</button>}
       {wallet && !state.done && (
         <button className="primary" disabled={!!state.busy} onClick={deploy}>Deploy production factory from {wallet.account.slice(0, 6)}…{wallet.account.slice(-4)}</button>
