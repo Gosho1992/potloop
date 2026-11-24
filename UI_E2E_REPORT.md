@@ -1,6 +1,6 @@
 # UI acceptance report (automated)
 
-**Result: 23 of 23 cases pass** on the production build of the app, after three app bugs were fixed (two found by this suite, one found on the live app on 23 Nov 2026 and now covered by E2E-23). Raw results: `evidence/v93-release/ui-e2e/results.json`, a screenshot per case, and the browser console log.
+**Result: 25 of 25 cases pass** on the production build of the app, after three app bugs were fixed (two found by this suite, one found on the live app on 23 Nov 2026 and now covered by E2E-23). E2E-24 and E2E-25 (24 Nov 2026) cover the new How it works page and the quiet reconnect. A separate accessibility check with axe-core (WCAG 2 A and AA rules) on the home, guide, risks, create and circle pages, at 1440×900 and at a 390×844 phone size, found no issues, and no page scrolls sideways on the phone. Raw results: `evidence/v93-release/ui-e2e/results.json`, a screenshot per case, and the browser console log.
 
 ## What was tested, and how
 
@@ -28,7 +28,7 @@
 | E2E-07 | Copy invite link; open it as another member | PASS | Link is exactly `<site>/#/c/<circle>`; opens the circle |
 | E2E-08 | Accept three seats; exact collateral approval | PASS | Each `approve` the app sent equals `upfrontCollateral(seat)` and names the circle as spender; circle Active |
 | E2E-09 | Contribute from three accounts | PASS | `contributed(1, seat)` true for all |
-| E2E-10 | Settle, refresh, reconnect | PASS | Round 2 shown after refresh, as on chain. After a refresh the user must press Connect again (no silent reconnect) |
+| E2E-10 | Settle, refresh, reconnect | PASS | Round 2 shown after refresh, as on chain. The test wallet forgets its permission on reload, so the user presses Connect again; the quiet reconnect for a wallet that remembers is E2E-25 |
 | E2E-11 | Rejected signature | PASS | Message shown; no transaction sent; not recorded as paid; retry succeeds |
 | E2E-12 | Slow confirmation (mining paused) | PASS | "confirming on QIE" with a transaction link; buttons disabled until mined; success message after |
 | E2E-13 | Default after the payout; settle after the deadline | PASS | "Behind on payments" warning; catch-up amount, secured and still-owed figures equal `catchUpCost` and `risk()` on chain |
@@ -42,6 +42,8 @@
 | E2E-21 | Circle not created by the official factory | PASS | Refused with a warning; no actions |
 | E2E-22 | URL tries to set factory and RPC | PASS | Ignored by the production build |
 | E2E-23 | Every tab of a finished circle that had a default and a catch-up | PASS | No page errors; 28 history lines, the default and the catch-up described in words, no event shown by its raw name |
+| E2E-24 | How it works page from the header and the home page | PASS | All six sections shown; every in-app link in the guide leads to a real page; no page errors |
+| E2E-25 | Quiet reconnect on reload | PASS | A wallet that already allowed the site, on QIE, reconnects using eth_accounts only (no prompt); a wallet that hasn't, or one on another network, stays disconnected |
 
 ## Bugs found by this suite and fixed (app only; no contract change)
 

@@ -79,6 +79,10 @@ export function Shell({ wallet, names, onConnect, children }) {
       <header className="top">
         <a className="brand" href="#/">{config.appName}</a>
         <span className="tagline">Your circle. Your turn. Your money.</span>
+        <nav className="nav" aria-label="Help">
+          <a href="#/guide">How it works</a>
+          <a href="#/risks">Risks</a>
+        </nav>
         <span className="net">{isMainnet ? "QIE mainnet" : `Chain ${config.chainId}`}</span>
         {wallet ? (
           <span className="who">{displayName(names, wallet.account)}</span>

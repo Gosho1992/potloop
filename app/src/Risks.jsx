@@ -14,7 +14,7 @@ export default function Risks() {
       <ul>
         <li><strong>A member stops paying after taking the pot.</strong> Their collateral pays their share until it runs out. Below 100% cover, the members paid later can lose money. Each seat's worst case is shown before you join.</li>
         <li><strong>A member leaves before their turn.</strong> They lose their turn and up to one round's payment. If others also stop paying, a leaver's refund comes last and can be less than what they paid in.</li>
-        <li><strong>The token.</strong> Circles use QUSDC ({QUSDC_MAINNET}), a bridged USDC on QIE, not issued by Circle. If the token's issuer freezes, pauses or blocks it, the circle can't override that. You can withdraw to another address if yours is blocked.</li>
+        <li><strong>The token.</strong> Circles use QUSDC ({QUSDC_MAINNET}), a bridged USDC on QIE, not issued by Circle. If the token's issuer freezes, pauses or blocks it, the circle can't override that. You can withdraw to another address if yours is blocked. The token's administrator can also burn QUSDC from any address, a circle's included; cover doesn't protect against that.</li>
         <li><strong>Bugs.</strong> The contracts are tested heavily but not audited by a security firm. Use small amounts.</li>
         <li><strong>Track records.</strong> The history shown next to a member is for that address only. One person can have many addresses. It is not identity verification or a credit check.</li>
         <li><strong>Missing a payment by accident.</strong> Pay inside the grace period and nothing happens. After it, see the rules below.</li>

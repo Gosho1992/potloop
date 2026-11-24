@@ -312,6 +312,11 @@ export default function Create({ wallet, onConnect, names, setNames }) {
           <p>
             Pot each round: <strong>{money(c * BigInt(n))}</strong>. Every member pays {money(c * BigInt(n))} in total over {n} rounds.
           </p>
+          {c * BigInt(n) > parseUnits("500", token.decimals) && (
+            <p className="warn">
+              That's a large pot for an unaudited contract. We suggest keeping each pot at 500 {token.symbol} or less until PotLoop has had an independent audit. <a href="#/risks">Why</a>
+            </p>
+          )}
           {firstWalk && (
             <p>
               {firstWalk.othersLose > 0n ? (

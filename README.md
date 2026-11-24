@@ -6,6 +6,8 @@ A non-custodial savings circle (committee, stokvel, tanda, ROSCA) on QIE, paid i
 
 **What makes it different:** before joining, every member sees what they need to start, what stays locked, what they could lose, and what happens if anyone stops paying. Those figures come from the same rules the contract enforces, and a simulator that is tested against the contract at every step.
 
+**Try it:** [potloop.vercel.app](https://potloop.vercel.app). No wallet is needed to look around: open [How it works](https://potloop.vercel.app/#/guide), a [real mainnet circle with a default and a catch-up](https://potloop.vercel.app/#/c/0xe7461b1505f74663707786C3fc22bCBB8aaAc804), or start a circle and play with the What-if panel. Demo video and slides: see the submission.
+
 ## In two minutes
 
 1. Create a 2–12 member circle: payout order, contribution, schedule and cover. Only the cover levels the factory allows can be picked; 100% is the default.
@@ -16,15 +18,24 @@ A non-custodial savings circle (committee, stokvel, tanda, ROSCA) on QIE, paid i
 
 **Honest limits:** below 100% cover, walking away after your payout is profitable for early seats, and the app shows the exact amount and requires the creator to acknowledge it. At 100% cover it gains nothing and nobody loses ([payoff matrix](docs/PAYOFF_MATRIX.md)). The price is that early seats get little credit at their turn. Cover does not protect against token issuer actions or contract defects.
 
-## Status (23 Nov 2026)
+## Status (24 Nov 2026)
 
 | | |
 | --- | --- |
-| **Recommendation** | **Ready for a hackathon demonstration. Not ready for an external pilot or production.** Reasons and evidence: [`FINAL_RELEASE_READINESS.md`](FINAL_RELEASE_READINESS.md) |
-| QIE mainnet | Demo factory `0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4` (block 12,109,975). **The factory's source is verified on the explorer** ([code](https://mainnet.qie.digital/address/0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4#code)), and its verified source bundle includes `SavingsCircle.sol` and `CircleDeployer.sol`. The deployer and the 7 circles are **not individually verified**: QIE's explorer does not index contracts created by other contracts. Instead, their on-chain bytecode was matched against this build (`MAINNET_DEPLOYMENT_RECONCILIATION.md`). Demo rules: 60 s rounds, 0% minimum cover, 0.01 QUSDC minimum, 0.5% fee. Its treasury key was exposed ([`SECURITY_INCIDENT_AND_KEY_ROTATION.md`](SECURITY_INCIDENT_AND_KEY_ROTATION.md)), so it stays a demo factory |
-| Mainnet runs | 7 circles with real QUSDC. **511 transactions in total**: 508 in the test runs S1–S7, 1 factory deployment and 2 returning the funds; 510 succeeded and 1 reverted (a late payment in S5). S1–S4 passed; S5 failed (a payment arrived after a 60 s deadline); S6 finished S5's circle; S7 repeated S5 and passed. Reconciled from receipts and QUSDC transfer logs: [`MAINNET_FINANCIAL_RECONCILIATION.md`](MAINNET_FINANCIAL_RECONCILIATION.md) |
-| Local evidence (this source) | 142 tests passing, 6 pending, including 19 new release-acceptance tests; 1,500 random invariant runs; 15/15 mutations caught; exhaustive suite 46,656/46,656 patterns; Slither (13 known items); UI acceptance 23/23 on the production build: [`LOCAL_FORK_EDGE_CASE_REPORT.md`](LOCAL_FORK_EDGE_CASE_REPORT.md), [`UI_E2E_REPORT.md`](UI_E2E_REPORT.md) |
+| **Where it stands** | **Live on QIE mainnet: 7 circles ran end to end with real QUSDC, and anyone can try the app.** Before real groups put in larger amounts it needs an independent audit, a test with the real QIE Wallet by a person, and a production factory. Evidence: [`FINAL_RELEASE_READINESS.md`](FINAL_RELEASE_READINESS.md) |
+| QIE mainnet | Factory `0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4` (block 12,109,975). **The factory's source is verified on the explorer** ([code](https://mainnet.qie.digital/address/0xD099c7361157Ec20a9Ac145aF4B66Af553AeDae4#code)), and its verified source bundle includes `SavingsCircle.sol` and `CircleDeployer.sol`. The deployer and the 7 circles are **not individually verified**: QIE's explorer does not index contracts created by other contracts. Instead, their on-chain bytecode was matched against this build (`MAINNET_DEPLOYMENT_RECONCILIATION.md`). Its rules are set for testing (60 s rounds, 0% minimum cover, 0.01 QUSDC minimum, 0.5% fee), and the key of the wallet that receives its fees was exposed ([`SECURITY_INCIDENT_AND_KEY_ROTATION.md`](SECURITY_INCIDENT_AND_KEY_ROTATION.md)); that wallet only receives fees and has no power over circles. Real groups will use a new production factory ([`PRODUCTION_FACTORY_RECOMMENDATION.md`](PRODUCTION_FACTORY_RECOMMENDATION.md)) |
+| Mainnet runs | 7 circles with real QUSDC. **511 transactions in total**: 508 in the test runs S1–S7, 1 factory deployment and 2 returning the funds; 510 succeeded and 1 reverted (a late payment in S5). S1–S4 passed; S5 stopped early when a payment arrived after its 60-second deadline and the contract refused it, as designed; S6 finished that circle; S7 repeated S5 and passed. Reconciled from receipts and QUSDC transfer logs: [`MAINNET_FINANCIAL_RECONCILIATION.md`](MAINNET_FINANCIAL_RECONCILIATION.md) |
+| Local evidence (this source) | 142 tests passing, 6 pending, including 19 new release-acceptance tests; 1,500 random invariant runs; 15/15 mutations caught; exhaustive suite 46,656/46,656 patterns; Slither (13 known items); UI acceptance 25/25 on the production build, with no WCAG A/AA issues found by axe on any page, desktop and mobile: [`LOCAL_FORK_EDGE_CASE_REPORT.md`](LOCAL_FORK_EDGE_CASE_REPORT.md), [`UI_E2E_REPORT.md`](UI_E2E_REPORT.md) |
 | Not done | Independent audit; manual QIE Wallet acceptance by a person ([`POTLOOP_UAT_PLAN.md`](POTLOOP_UAT_PLAN.md)); a production factory ([`PRODUCTION_FACTORY_RECOMMENDATION.md`](PRODUCTION_FACTORY_RECOMMENDATION.md)) |
+
+## What's new on 24 Nov 2026 (easier to use)
+
+- **How it works** page (`#/guide`), linked from the header on every page and from the home page: a two-minute tour that needs no wallet, what you need (QIE Wallet, a little QIE, QUSDC from QIEDEX), step-by-step for organisers and members, what happens when something goes wrong, and a glossary.
+- **Quiet reconnect:** a wallet that has already allowed the site reconnects on reload without a prompt; it never connects on its own otherwise, or on the wrong network.
+- **Before you lock money** notice on the seat card (not yet independently audited; QUSDC's administrator can burn tokens), and a warning on the create screen when a pot is above 500 QUSDC.
+- **Faster first load:** libraries are split into their own cached files and pages load when first opened (home page about 160 KB gzipped).
+- **Fixed:** the Risk and history tab of a circle that had paid a pot showed a blank page.
+- UI acceptance now 25 cases, including the guide and the reconnect; an accessibility check (axe, WCAG A/AA) found nothing on any page at desktop and phone sizes.
 
 ## What's new in v9.3 (release readiness)
 

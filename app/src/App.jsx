@@ -1,12 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { config } from "./config";
-import { connectWallet, verifyNetwork } from "./chain";
+import { connectWallet, reconnectWallet, verifyNetwork } from "./chain";
 import { resolveNames } from "./names";
 import { explainError, Shell } from "./ui";
-import CirclePage from "./CirclePage";
-import Create from "./Create";
+import { lazy, Suspense } from "react";
 import Home from "./Home";
-import Risks from "./Risks";
+
+// pages other than the home page load when first opened
+const CirclePage = lazy(() => import("./CirclePage"));
+const Create = lazy(() => import("./Create"));
+const Risks = lazy(() => import("./Risks"));
+const Guide = lazy(() => import("./Guide"));
 
 function parseRoute() {
   const h = window.location.hash.replace(/^#/, "");
@@ -14,6 +18,7 @@ function parseRoute() {
   if (m) return { page: "circle", address: m[1] };
   if (h.startsWith("/new")) return { page: "new" };
   if (h.startsWith("/risks")) return { page: "risks" };
+  if (h.startsWith("/guide")) return { page: "guide" };
   if (config.circle && !config.factory) return { page: "circle", address: config.circle };
   return { page: "home" };
 }
@@ -42,23 +47,38 @@ export default function App() {
     if (wallet?.account) resolveNames([wallet.account]).then((n) => setNames((o) => ({ ...o, ...n })));
   }, [wallet]);
 
+  const attach = useCallback((w) => {
+    setWallet(w);
+    w.eip.on?.("accountsChanged", (accs) => setWallet(accs?.[0] ? { ...w, account: accs[0] } : null));
+    // if the wallet changes network, forget the connection: every write re-checks the chain anyway
+    w.eip.on?.("chainChanged", (id) => {
+      if (parseInt(id, 16) !== config.chainId) {
+        setWallet(null);
+        setError(`Your wallet switched to another network. Switch back to QIE (chain ${config.chainId}) and connect again.`);
+      }
+    });
+  }, []);
+
+  // a wallet that already allowed this site reconnects on reload, without a prompt
+  useEffect(() => {
+    const t = setTimeout(() => {
+      reconnectWallet()
+        .then((w) => {
+          if (w) attach(w);
+        })
+        .catch(() => {});
+    }, 300);
+    return () => clearTimeout(t);
+  }, [attach]);
+
   const onConnect = useCallback(async () => {
     setError("");
     try {
-      const w = await connectWallet();
-      setWallet(w);
-      w.eip.on?.("accountsChanged", (accs) => setWallet(accs?.[0] ? { ...w, account: accs[0] } : null));
-      // if the wallet changes network, forget the connection: every write re-checks the chain anyway
-      w.eip.on?.("chainChanged", (id) => {
-        if (parseInt(id, 16) !== config.chainId) {
-          setWallet(null);
-          setError(`Your wallet switched to another network. Switch back to QIE (chain ${config.chainId}) and connect again.`);
-        }
-      });
+      attach(await connectWallet());
     } catch (e) {
       setError(explainError(e));
     }
-  }, []);
+  }, [attach]);
 
   const props = { wallet, onConnect, names, setNames };
   return (
@@ -74,10 +94,13 @@ export default function App() {
         </p>
       )}
       {error && <p className="status error" role="status">{error}</p>}
+      <Suspense fallback={<p className="muted">Loading…</p>}>
       {route.page === "circle" && <CirclePage key={route.address} address={route.address} {...props} />}
       {route.page === "new" && <Create {...props} />}
       {route.page === "home" && <Home {...props} />}
       {route.page === "risks" && <Risks />}
+      {route.page === "guide" && <Guide />}
+      </Suspense>
     </Shell>
   );
 }

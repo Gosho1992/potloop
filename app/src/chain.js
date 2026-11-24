@@ -344,6 +344,21 @@ export async function connectWallet() {
   return { eip, account, walletName: found.name };
 }
 
+/**
+ * Quiet reconnect on page load: only if the wallet has already allowed this site and is on the
+ * right network. Never opens a wallet prompt; returns null otherwise.
+ */
+export async function reconnectWallet() {
+  const found = pickInjected();
+  if (!found) return null;
+  const eip = found.provider;
+  const [account] = (await eip.request({ method: "eth_accounts" })) || [];
+  if (!account) return null;
+  const id = parseInt(await eip.request({ method: "eth_chainId" }), 16);
+  if (id !== config.chainId) return null;
+  return { eip, account, walletName: found.name };
+}
+
 /** Signer for a write, after checking the wallet is still on the expected network. */
 export async function signerFrom(eip) {
   const id = parseInt(await eip.request({ method: "eth_chainId" }), 16);

@@ -1,5 +1,5 @@
 {
- "date": "2026-11-23T16:27:38.852Z",
+ "date": "2026-11-24T05:15:24.604Z",
  "deployment": {
   "chainId": 31337,
   "token": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
@@ -28,7 +28,7 @@
   "0x23618e81e3f5cdf7f54c3d65f7fbc0abf5b21e8f",
   "0xa0ee7a142d267c1f36714e4a8f75612f20a79720"
  ],
- "passed": 23,
+ "passed": 25,
  "failed": 0,
  "results": [
   {
@@ -36,7 +36,7 @@
    "name": "QIE Wallet is discovered (EIP-6963, rdns me.qiewallet) and connects",
    "status": "PASS",
    "detail": "header shows 0x7099…79C8",
-   "ms": 333,
+   "ms": 331,
    "screenshot": "E2E-01.png"
   },
   {
@@ -44,7 +44,7 @@
    "name": "Rejecting the connection shows a clear message and stays disconnected",
    "status": "PASS",
    "detail": "",
-   "ms": 348,
+   "ms": 317,
    "screenshot": "E2E-02.png"
   },
   {
@@ -52,7 +52,7 @@
    "name": "Wrong network: the app asks the wallet to switch to the configured chain, then connects",
    "status": "PASS",
    "detail": "switch requested and accepted",
-   "ms": 323,
+   "ms": 269,
    "screenshot": "E2E-03.png"
   },
   {
@@ -60,7 +60,7 @@
    "name": "Wrong network and the user refuses to switch: not connected, clear message",
    "status": "PASS",
    "detail": "",
-   "ms": 287,
+   "ms": 265,
    "screenshot": "E2E-04.png"
   },
   {
@@ -68,7 +68,7 @@
    "name": "Create page reads the deployed factory's real rules (minimum, schedules, cover levels)",
    "status": "PASS",
    "detail": "minimum 0.01, 3-minute schedule offered, 0% cover allowed (factory minCoverage 0)",
-   "ms": 198,
+   "ms": 190,
    "screenshot": "E2E-05.png"
   },
   {
@@ -76,7 +76,7 @@
    "name": "Create a circle from the UI; the chain has it with the exact terms",
    "status": "PASS",
    "detail": "circle 0xAe367415f4BDe0aDEE3e59C35221d259f517413E: 3 members, 0.5 per round, 100% cover, 3-minute rounds",
-   "ms": 430,
+   "ms": 378,
    "screenshot": "E2E-06.png"
   },
   {
@@ -84,7 +84,7 @@
    "name": "Invite link copies the circle link (production build drops any URL settings) and opens it",
    "status": "PASS",
    "detail": "http://127.0.0.1:4173/#/c/0xAe367415f4BDe0aDEE3e59C35221d259f517413E",
-   "ms": 501,
+   "ms": 498,
    "screenshot": "E2E-07.png"
   },
   {
@@ -92,7 +92,7 @@
    "name": "Accept seats with the exact collateral approval (seat 1, then seats 2 and 3 by switching accounts)",
    "status": "PASS",
    "detail": "seat 1 approved exactly 0.5; seat 2 approved exactly 0.5; seat 3 approved exactly 0.5",
-   "ms": 1012,
+   "ms": 959,
    "screenshot": "E2E-08.png"
   },
   {
@@ -100,15 +100,15 @@
    "name": "Contribute from three member accounts",
    "status": "PASS",
    "detail": "",
-   "ms": 921,
+   "ms": 694,
    "screenshot": "E2E-09.png"
   },
   {
    "id": "E2E-10",
    "name": "Settle a round, refresh the page, reconnect: the new state is shown",
    "status": "PASS",
-   "detail": "after refresh the wallet must be reconnected by the user (no silent reconnect); state matches the chain",
-   "ms": 414,
+   "detail": "after refresh the user reconnects (this test wallet forgets its permission on reload; E2E-25 covers the quiet reconnect); state matches the chain",
+   "ms": 418,
    "screenshot": "E2E-10.png"
   },
   {
@@ -116,7 +116,7 @@
    "name": "A rejected signature changes nothing and the payment can be retried",
    "status": "PASS",
    "detail": "",
-   "ms": 496,
+   "ms": 479,
    "screenshot": "E2E-11.png"
   },
   {
@@ -124,7 +124,7 @@
    "name": "Slow confirmation: the app shows the pending transaction and blocks other actions until it is mined",
    "status": "PASS",
    "detail": "pending state 'confirming on QIE' shown with a transaction link; buttons disabled",
-   "ms": 9438,
+   "ms": 9485,
    "screenshot": "E2E-12.png"
   },
   {
@@ -132,7 +132,7 @@
    "name": "Seat 1 misses round 2 after its payout: settle after the deadline; arrears, collateral and catch-up cost match the chain",
    "status": "PASS",
    "detail": "catch-up 1.01 (late fee 0.01); secured 1 of 1",
-   "ms": 526,
+   "ms": 497,
    "screenshot": "E2E-13.png"
   },
   {
@@ -140,7 +140,7 @@
    "name": "Catch up after the default from the UI (breakdown shown, exact approval)",
    "status": "PASS",
    "detail": "paid 1.01; seat 1 back in good standing",
-   "ms": 320,
+   "ms": 214,
    "screenshot": "E2E-14.png"
   },
   {
@@ -148,15 +148,15 @@
    "name": "Finish the last round and finalize the circle from the UI",
    "status": "PASS",
    "detail": "",
-   "ms": 1005,
+   "ms": 1103,
    "screenshot": "E2E-15.png"
   },
   {
    "id": "E2E-16",
    "name": "Record the completed results from the UI; history updates on chain",
    "status": "PASS",
-   "detail": "seat 1 caught up 1; seats 2 and 3 completed 1; button removed after 90 ms",
-   "ms": 280,
+   "detail": "seat 1 caught up 1; seats 2 and 3 completed 1; button removed after 80 ms",
+   "ms": 253,
    "screenshot": "E2E-16.png"
   },
   {
@@ -164,15 +164,15 @@
    "name": "Withdraw for each member: the button shows the exact amount and the wallet receives it",
    "status": "PASS",
    "detail": "withdrew 1.995834, 1.995833, 1.995833; circle holds only the treasury's 0.0225 fee; nets -0.014166, -0.004167, -0.004167",
-   "ms": 912,
+   "ms": 893,
    "screenshot": "E2E-17.png"
   },
   {
    "id": "E2E-23",
    "name": "Every tab of a finished circle with a default and catch-up renders, with a readable history",
    "status": "PASS",
-   "detail": "28 history lines, no page errors",
-   "ms": 2259,
+   "detail": "27 history lines, no page errors",
+   "ms": 2204,
    "screenshot": "E2E-23.png"
   },
   {
@@ -180,7 +180,7 @@
    "name": "Wallet disconnect: the app drops the account and offers to connect again",
    "status": "PASS",
    "detail": "",
-   "ms": 87,
+   "ms": 71,
    "screenshot": "E2E-18.png"
   },
   {
@@ -188,7 +188,7 @@
    "name": "Wallet switches network mid-session: connection dropped with a clear message",
    "status": "PASS",
    "detail": "",
-   "ms": 136,
+   "ms": 133,
    "screenshot": "E2E-19.png"
   },
   {
@@ -196,7 +196,7 @@
    "name": "RPC failure: the app says the network is unreachable, shows no actions, and never calls a real circle fake",
    "status": "PASS",
    "detail": "Can't reach the QIE network right now. What you see may be out of date: don't sign anything until the page loads normally. Check your connection and reload. | ",
-   "ms": 363,
+   "ms": 350,
    "screenshot": "E2E-20.png"
   },
   {
@@ -204,7 +204,7 @@
    "name": "A circle address not created by the official factory is refused",
    "status": "PASS",
    "detail": "",
-   "ms": 83,
+   "ms": 70,
    "screenshot": "E2E-21.png"
   },
   {
@@ -212,8 +212,24 @@
    "name": "The production build ignores factory/RPC settings in the URL",
    "status": "PASS",
    "detail": "URL factory and rpc parameters had no effect",
-   "ms": 340,
+   "ms": 297,
    "screenshot": "E2E-22.png"
+  },
+  {
+   "id": "E2E-24",
+   "name": "The user guide opens from the header and every link in it leads somewhere real",
+   "status": "PASS",
+   "detail": "5 links checked; header and home buttons open the guide",
+   "ms": 1561,
+   "screenshot": "E2E-24.png"
+  },
+  {
+   "id": "E2E-25",
+   "name": "A wallet that already allowed the site reconnects on reload without a prompt; a new one doesn't",
+   "status": "PASS",
+   "detail": "allowed + right network: reconnected with eth_accounts only; not allowed or wrong network: stays disconnected",
+   "ms": 3735,
+   "screenshot": "E2E-25.png"
   }
  ]
 }

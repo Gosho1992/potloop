@@ -55,6 +55,7 @@ export default function Home({ wallet, onConnect }) {
         </p>
         <div className="actions">
           <a className="button primary" href="#/new">Start a circle</a>
+          <a className="button" href="#/guide">New here? See how it works</a>
           {!wallet && <button onClick={onConnect}>Connect QIE Wallet to see your circles</button>}
         </div>
       </section>

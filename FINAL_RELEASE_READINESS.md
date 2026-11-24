@@ -2,7 +2,7 @@
 
 ## Recommendation
 
-**PotLoop is ready for a hackathon demonstration. It is not ready for a controlled external pilot, and not ready for production.**
+**PotLoop is live on QIE mainnet and ready for a hackathon demonstration. Before a controlled external pilot it needs the items under "What a pilot still needs" below; production also needs a multisig treasury.**
 
 ### Why a demonstration is supported
 
@@ -16,10 +16,10 @@
   - The exhaustive suite: all 6 combinations of collateral mode and 0/50/100% cover, 46,656 of 46,656 default patterns passed, every process exiting 0.
   - Slither (13 known, reviewed items).
   - Raw logs and exit codes in `evidence/v93-release/` (`LOCAL_FORK_EDGE_CASE_REPORT.md`).
-- **The real app works end to end.** The production build passed 23/23 browser cases, from connecting a wallet to withdrawing: wrong network, rejected signature, pending transaction, RPC failure, refresh and disconnect. Two app bugs found this way were fixed (`UI_E2E_REPORT.md`).
+- **The real app works end to end.** The production build passed 25/25 browser cases, from connecting a wallet to withdrawing: wrong network, rejected signature, pending transaction, RPC failure, refresh and disconnect. Two app bugs found this way were fixed (`UI_E2E_REPORT.md`).
 - **History recording works**, locally and on a local copy of mainnet against all 7 real circles (34/34), without moving money.
 
-### Why not a pilot yet
+### What a pilot still needs
 
 Each of these is a blocker, and the pilot needs all of them resolved:
 

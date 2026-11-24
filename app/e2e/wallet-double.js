@@ -17,7 +17,7 @@ function installWalletDouble(cfg) {
     account: cfg.account,
     chainId: cfg.chainId,
     localChainId: cfg.chainId,
-    connected: false,
+    connected: !!cfg.connected, // true: the site was already allowed earlier (eth_accounts answers)
     rejectConnect: false,
     rejectNextTx: 0,
     refuseSwitch: false,

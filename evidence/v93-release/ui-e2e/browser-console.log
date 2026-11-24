@@ -1,14 +1,15 @@
 [error] Failed to load resource: the server responded with a status of 404 (Not Found)
 [error] Error: user rejected action (action="sendTransaction", reason="rejected", info={ "error": { "code": 4001, "message": "ethers-user-denied: User rejected the transaction." }, "payload": { "id": 8, "jsonrpc": "2.0", "method": "eth_sendTransaction", "params": [ { "data": "0x095ea7b3000000000000000000000000ae367415f4bde0adee3e59c35221d259f517413e000000000000000000000000000000000000000000000000000000000007a120", "from": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc", "gas": "0xb4ff", "to": "0x5fbdb2315678afecb367f032d93f642f64180aa3" } ] } }, code=ACTION_REJECTED, version=6.17.0)
-    at Re (http://127.0.0.1:4173/assets/index-DNhuMG1c.js:40:60924)
-    at si.getRpcError (http://127.0.0.1:4173/assets/index-DNhuMG1c.js:40:324343)
-    at si.getRpcError (http://127.0.0.1:4173/assets/index-DNhuMG1c.js:40:330590)
-    at http://127.0.0.1:4173/assets/index-DNhuMG1c.js:40:327739
+    at nt (http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:2455)
+    at Jn.getRpcError (http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:265583)
+    at Jn.getRpcError (http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:271828)
+    at http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:268977
+[error] Failed to load resource: net::ERR_FAILED
 [error] Failed to load resource: net::ERR_FAILED
 [error] TypeError: Failed to fetch
-    at cf.e (http://127.0.0.1:4173/assets/index-DNhuMG1c.js:40:68818)
-    at cf.rl (http://127.0.0.1:4173/assets/index-DNhuMG1c.js:40:75702)
-    at cf.send (http://127.0.0.1:4173/assets/index-DNhuMG1c.js:40:73210)
-    at oS._send (http://127.0.0.1:4173/assets/index-DNhuMG1c.js:40:328764)
-    at http://127.0.0.1:4173/assets/index-DNhuMG1c.js:40:327322
-    at http://127.0.0.1:4173/assets/index-DNhuMG1c.js:40:327873
+    at fo.t (http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:10333)
+    at fo.Vs (http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:17217)
+    at fo.send (http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:14725)
+    at s0._send (http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:270002)
+    at http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:268560
+    at http://127.0.0.1:4173/assets/ethers-D1yUWp3L.js:1:269111

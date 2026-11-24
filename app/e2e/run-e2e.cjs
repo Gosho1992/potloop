@@ -91,9 +91,9 @@ async function main() {
   const shim = fs.readFileSync(path.join(__dirname, "wallet-double.js"), "utf8");
   const chainHex = "0x" + dep.chainId.toString(16);
   const consoleLog = [];
-  const newPage = async (account, chainId = chainHex) => {
+  const newPage = async (account, chainId = chainHex, connected = false) => {
     const p = await ctx.newPage();
-    await p.addInitScript({ content: `${shim}\ninstallWalletDouble(${JSON.stringify({ account, chainId, rpc: RPC })});` });
+    await p.addInitScript({ content: `${shim}\ninstallWalletDouble(${JSON.stringify({ account, chainId, rpc: RPC, connected })});` });
     p.on("console", (m) => consoleLog.push(`[${m.type()}] ${m.text()}`));
     p.on("dialog", (d) => d.dismiss());
     return p;
@@ -232,7 +232,7 @@ async function main() {
     await text(page, /Round 2: .* gets the 1\.5 mQUSDC pot/);
     const [r] = await call(circle, C, "currentRound");
     must(r === 2n, `chain round ${r}`);
-    return "after refresh the wallet must be reconnected by the user (no silent reconnect); state matches the chain";
+    return "after refresh the user reconnects (this test wallet forgets its permission on reload; E2E-25 covers the quiet reconnect); state matches the chain";
   });
 
   await tcase("E2E-11", "A rejected signature changes nothing and the payment can be retried", page, async () => {
@@ -395,6 +395,51 @@ async function main() {
     await page.goto(BASE + "?factory=0x000000000000000000000000000000000000dEaD&rpc=http://evil.invalid#/c/" + circle);
     await text(page, /This circle is finished/);
     return "URL factory and rpc parameters had no effect";
+  });
+
+  await tcase("E2E-24", "The user guide opens from the header and every link in it leads somewhere real", page, async () => {
+    const crashes = [];
+    page.on("pageerror", (e) => crashes.push(String(e.message || e)));
+    await page.goto(BASE + "#/");
+    await (await visible(page.locator("header nav").getByRole("link", { name: "How it works" }))).click();
+    await text(page, /^How to use PotLoop$/);
+    for (const h of ["Try it in two minutes, no wallet needed", "What you need to take part", "If you organise the circle", "If you're a member", "If something goes wrong", "Words you'll see"]) {
+      await visible(page.getByRole("heading", { name: h }));
+    }
+    const hrefs = await page.locator("section.guide a").evaluateAll((as) => as.map((a) => a.getAttribute("href")));
+    for (const h of hrefs.filter((x) => x.startsWith("#/"))) {
+      await page.goto(BASE + h);
+      await page.waitForTimeout(400);
+      must(!(await page.getByText(/^How to use PotLoop$/).count()) || h === "#/guide", `link ${h} did not leave the guide`);
+    }
+    await page.goto(BASE + "#/");
+    await (await visible(page.getByRole("link", { name: /New here\? See how it works/ }))).click();
+    await text(page, /^How to use PotLoop$/);
+    must(crashes.length === 0, `page error: ${crashes[0]}`);
+    return `${hrefs.length} links checked; header and home buttons open the guide`;
+  });
+
+  await tcase("E2E-25", "A wallet that already allowed the site reconnects on reload without a prompt; a new one doesn't", page, async () => {
+    const p1 = await newPage(A, chainHex, true);
+    await p1.goto(BASE + "#/");
+    await visible(p1.locator("header .who"));
+    const r1 = await p1.evaluate(() => window.__wallet.requests);
+    must(!r1.includes("eth_requestAccounts"), "a connection prompt was opened");
+    await p1.close();
+    const p2 = await newPage(A, chainHex, false);
+    await p2.goto(BASE + "#/");
+    await p2.waitForTimeout(1500);
+    must((await p2.locator("header .who").count()) === 0, "connected without permission");
+    await visible(btn(p2, /^Connect wallet/));
+    const r2 = await p2.evaluate(() => window.__wallet.requests);
+    must(!r2.includes("eth_requestAccounts"), "a prompt was opened on load");
+    await p2.close();
+    const p3 = await newPage(A, "0x1", true);
+    await p3.goto(BASE + "#/");
+    await p3.waitForTimeout(1500);
+    must((await p3.locator("header .who").count()) === 0, "reconnected on the wrong network");
+    await p3.close();
+    return "allowed + right network: reconnected with eth_accounts only; not allowed or wrong network: stays disconnected";
   });
 
   await browser.close();

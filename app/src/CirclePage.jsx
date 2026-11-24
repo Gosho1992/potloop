@@ -519,6 +519,11 @@ function Seat({ circle, wallet, who, money, onConnect, v, acceptSeat, busy }) {
         If you leave before your turn and other members also stop paying, your refund comes last and can be less than what you paid in. <a href="#/risks">All risks</a>
       </p>
       {v.canAccept && (
+        <p className="notice">
+          <strong>Before you lock money:</strong> the contracts are tested but not yet independently audited, and QUSDC's administrator can burn tokens from any address, a circle's included. Cover protects you from members who stop paying, not from that. Lock only what you can afford to have tied up. <a href="#/risks">Risks and rules</a>
+        </p>
+      )}
+      {v.canAccept && (
         <button className="primary" disabled={!!busy} onClick={acceptSeat}>
           {m.collateralRequired > 0n ? `Lock ${money(m.collateralRequired)} and accept seat ${m.slot}` : `Accept seat ${m.slot}`}
         </button>
